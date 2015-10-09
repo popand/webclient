@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES-test</title>
+
+<script src="http://content.jwplatform.com/libraries/s8MGKlCn.js"></script>
+<!--<script type="text/javascript" src="jwplayer/jwplayer.js"></script>
+<script type="text/javascript">jwplayer.key="WxHYH6gGA76nEK9z6q3Ih/I6qSgR8ZS20vUlWg==";</script>-->
+
+</head>
+
+<body ng-app="moviesApp">
+
+<div id="myElement">Loading the player...</div>
+
+<p>Player AES - test</p>
+
+<script type="text/javascript">
+    jwplayer("myElement").setup({
+        //image: "https://s3.amazonaws.com/libertas/c7b0f732-209a-45c6-8656-890236bdfc70/ActionChannel_boxart.jpg",
+        aestoken: "testtoken_123",
+        file: "http://www.streambox.fr/playlists/test_001/stream.m3u8",
+	autostart: true,
+	width: "100%",
+      aspectratio: "16:9"
+    });
+</script>
+
+</html>

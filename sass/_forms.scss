@@ -1,0 +1,91 @@
+/* FORMS styles */
+form {
+	font-family: $font-lato;
+	font-weight: 300;
+}
+.form-group {
+	position: relative;
+}
+
+//Header form
+.header-form {
+	margin: 11px 0 0 0;
+	@include respond-to(tablets-small) {
+		max-width: 160px;
+	}
+	@include respond-to(phones) {
+		max-width: 100%;
+		margin: 5px 0 10px 0;
+	}
+	.form-group {
+		margin-bottom: 0;
+	}
+	input.form-control {
+		color: $white;
+		height: 30px;
+		padding-right: 40px;
+		background: $cod-gray;
+		border: 1px solid $cod-gray;
+		@include placeholder {
+		    color: $white;
+		}
+		@include respond-to(tablets-small) {
+			font-size: 0.75rem;
+		}
+		@include respond-to(phones) {
+			font-size: 0.85rem;
+		}
+	}
+	button {
+		background: transparent;
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 100%;
+		border: none;
+	}
+	i {
+		color: $emperor;
+		@include respond-to(phones) {
+			font-size: 1rem;
+		}
+	}
+}
+
+//Leave comment form
+#leave-comment-form {
+	max-width: 570px;
+	width: 100%;
+	margin: 25px auto 0 auto;
+	@include respond-to(phones) {
+		max-width: 100%;
+	}
+}
+
+legend {
+	font-weight: bold;
+	font-family: $font-lato;
+	text-transform: uppercase;
+	font-size: 1rem;
+	border: none;
+}
+
+input.form-control, textarea.form-control, select.form-control {
+	background: $porcelain;
+	box-shadow: none;
+	&:focus {
+		box-shadow: 0 1px 10px rgba(204, 28, 74, 0.4) inset, 0 0 12px rgba(204, 28, 74, 0.8);
+		border: 1px solid $maroon-flush;
+	}
+}
+
+textarea.form-control, textarea {
+	resize: none;
+	height: 145px;
+	@include respond-to(phones) {
+		height: 80px;
+	}
+}
+
+
+

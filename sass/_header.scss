@@ -1,0 +1,160 @@
+/* HEADER */
+header {
+	background: $header-bg;
+	padding: 6px 0;
+	position: relative;
+	@include respond-to(phones) {
+		padding: 15px 0;
+	}
+	.navbar-nav {
+		display: inline-block;
+		margin: 0;
+		@include respond-to(phones) {
+			margin-top: 20px;
+			display: block;
+		}
+		>li {
+			display: inline-block;
+			margin-right: 60px;
+			&:last-child {
+				margin-right: 0;
+				margin-left: 60px;
+				@include respond-to(phones) {
+					margin-left: 0;
+				}
+			}
+			@include respond-to(tablets-large) {
+				margin-right: 15px;
+			}
+			@include respond-to(tablets-small) {
+				margin-right: 8px;
+			}
+			@include respond-to(phones) {
+				margin-right: 0;
+				display: block;
+			}
+		}
+		a {
+			color: $dove-gray;
+			line-height: 51px;
+			text-transform: uppercase;
+			&:hover, &:focus {
+				color: $white;
+			}
+			@include respond-to(tablets-large) {
+				font-size: 0.9rem;
+			}
+			@include respond-to(tablets-small) {
+				font-size: 0.75rem;
+			}
+			@include respond-to(phones) {
+				font-size: 1rem;
+				line-height: 100%;
+				padding: 4px 0;
+				display: inline-block;
+			}
+		}
+	}
+	&.inner {
+		.header-logo {
+			@include respond-to(phones) {
+				margin-left: 40px;
+			}
+		}
+	}
+}
+.navbar-nav {
+	.dropdown {
+		a {
+			color: $maroon-flush;
+			&:hover, &:focus {
+				color: lighten($maroon-flush, 5%);
+			}
+		}
+		i {
+			&:before {
+				@include transition(250ms);
+			}
+		}
+		&.open {
+			i {
+				&:before {
+					@include transform(rotate(-180deg));
+				}
+			}
+		}
+		ul.dropdown-menu {
+			li {
+				margin-right: 0;
+			}
+			a {
+				padding: 6px 12px;
+				line-height: 100%;
+				color: $body-text-color;;
+				&:hover, &:focus {
+					color: $maroon-flush;
+				}
+			}
+		}
+	}
+}
+.navbar {
+	margin-bottom: 0;
+	border: none;
+	min-height: 100%;
+}
+.header-logo {
+	display: inline-block;
+	margin-right: 60px;
+	img {
+		width: 100%;
+	}
+	@include respond-to(tablets-small) {
+		margin-right: 20px;
+	}
+	@include respond-to(phones) {
+		margin: 0;
+		padding-left: 15px;
+		width: 50px;
+	}
+}
+.navbar-toggle {
+	margin: 0;
+	padding: 4px 15px 0 0;
+	i {
+		color: $maroon-flush;
+		font-size: 2rem;
+	}
+}
+.navbar-collapse {
+	box-shadow: none;
+}
+
+.back {
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	z-index: 2000;
+	@media (max-width: 1300px) {
+		left: 0;
+	}
+	@include respond-to(phones) {
+		top: 22px;
+	}
+	i {
+		color: $stck;
+		font-size: 1.8rem;
+	}
+	&:hover, &:focus {
+		i {
+			color: $white;
+		}
+	}
+}
+
+
+
+
+
+
+

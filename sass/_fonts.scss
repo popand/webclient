@@ -1,0 +1,99 @@
+/* FONTS */
+
+//Franklin fonts
+@font-face {
+    font-family:'FranklinGothic-Heavy';
+    src: url('../fonts/FranklinGothic-Heavy_gdi.eot');
+    src: url('../fonts/FranklinGothic-Heavy_gdi.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/FranklinGothic-Heavy_gdi.woff') format('woff'),
+        url('../fonts/FranklinGothic-Heavy_gdi.ttf') format('truetype'),
+        url('../fonts/FranklinGothic-Heavy_gdi.svg#FranklinGothic-Heavy') format('svg');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-2666;
+}
+
+//Franklin book fonts
+@font-face {
+    font-family:'FranklinGothic-Book';
+    src: url('../fonts/FranklinGothic-Book_gdi.eot');
+    src: url('../fonts/FranklinGothic-Book_gdi.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/FranklinGothic-Book_gdi.woff') format('woff'),
+        url('../fonts/FranklinGothic-Book_gdi.ttf') format('truetype'),
+        url('../fonts/FranklinGothic-Book_gdi.svg#FranklinGothic-Book') format('svg');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-2666;
+}
+
+
+//Fontello fonts
+@font-face {
+  font-family: 'surf-fontello';
+  src: url('../fonts/surf-fontello.eot?82184873');
+  src: url('../fonts/surf-fontello.eot?82184873#iefix') format('embedded-opentype'),
+       url('../fonts/surf-fontello.woff?82184873') format('woff'),
+       url('../fonts/surf-fontello.ttf?82184873') format('truetype'),
+       url('../fonts/surf-fontello.svg?82184873#surf-fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'surf-fontello';
+    src: url('../font/surf-fontello.svg?82184873#surf-fontello') format('svg');
+  }
+}
+
+ 
+ [class^="icon-surf-"]:before, [class*=" icon-surf-"]:before {
+  font-family: "surf-fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+     
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.icon-surf-menu:before { content: '\e800'; } /* '' */
+.icon-surf-left-open-big:before { content: '\e801'; } /* '' */
+.icon-surf-right-open-big:before { content: '\e802'; } /* '' */
+.icon-surf-up-micro:before { content: '\e803'; } /* '' */
+.icon-surf-down-micro:before { content: '\e804'; } /* '' */
+.icon-surf-facebook:before { content: '\e805'; } /* '' */
+.icon-surf-twitter:before { content: '\e806'; } /* '' */
+.icon-surf-pinterest:before { content: '\e807'; } /* '' */
+.icon-surf-youtube:before { content: '\e808'; } /* '' */
+.icon-surf-play:before { content: '\e809'; } /* '' */
+.icon-surf-search:before { content: '\e80a'; } /* '' */
+.icon-surf-share:before { content: '\e80b'; } /* '' */
+.icon-surf-chat:before { content: '\e80c'; } /* '' */
+.icon-surf-right-dir:before { content: '\e80d'; } /* '' */
+

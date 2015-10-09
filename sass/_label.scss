@@ -1,0 +1,29 @@
+/* Custom label */
+.custom-label {
+	background: $maroon-flush;
+	padding: 4px 12px;
+	color: $white;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 1.28571429rem;
+	display: inline-block;
+	@include respond-to(tablets-large) {
+		font-size: 1rem;
+	}
+	@include respond-to(phones) {
+		font-size: 0.85rem;
+		padding: 4px 6px;
+	}
+	&.big-label {
+		padding-left: 130px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		@include respond-to(phones) {
+			padding-left: 60px;
+		}
+	}
+	&.transparent-label {
+		background: rgba(0, 0, 0, 0.3);
+	}
+}

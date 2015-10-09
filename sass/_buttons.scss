@@ -1,0 +1,28 @@
+/*Buttons*/
+.custom-btn {
+	display: inline-block;
+	border-radius: 3px;
+	border: 1px solid $maroon-flush;
+	padding: 6px 28px;
+	color: $white;
+	background: $cod-gray-light;
+	text-align: center;
+	font-family: $font-lato;
+	&:hover, &:focus {
+		border-color: 1px solid $cod-gray-light;
+		background: $maroon-flush;
+		color: $white;
+	}
+	&.icon-right {
+		i {
+			margin-left: 5px;
+		}
+	}
+	&.red-btn {
+		background: $maroon-flush;
+		border: none;
+		&:hover, &:focus {
+			background: $cod-gray-light;
+		}
+	}
+}

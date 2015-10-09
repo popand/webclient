@@ -1,0 +1,121 @@
+/* Reset styles */
+
+a:hover, a:focus, a:visited {
+	text-decoration: none;
+	outline: none;
+}
+
+
+ul, li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.list-inline {
+	display: inline-block;
+}
+
+.small-container {
+	max-width: 660px;
+	margin: 0 auto;
+	@include respond-to(phones) {
+		max-width: 100%;
+	}
+}
+
+.mobile-text-center {
+	@include respond-to(phones) {
+		text-align: center;
+	}
+}
+
+.push-sm-down {
+	@include respond-to(tablets-small) {
+  	margin-bottom: 20px;
+	}
+}
+.push-down {
+	@include respond-to(phones) {
+  	margin-bottom: 20px;
+	}
+}
+.push-down-small {
+  @include respond-to(phones) {
+    margin-bottom: 10px;
+  }
+}
+.push-down-big {
+	@include respond-to(phones) {
+  	margin-bottom: 40px;
+	}
+}
+.push-down-bigger {
+	@include respond-to(phones) {
+  	margin-bottom: 80px;
+	}
+}
+
+section {
+	position: relative;
+	padding: 50px 0;
+	@include respond-to(phones) {
+		padding: 25px 0;
+	}
+}
+.grey-section {
+	background: $concerete;
+}
+
+.black-section {
+	background: $cod-gray-light;
+}
+
+.custom-height-flex {
+  @include display(flex);
+  @include respond-to(phones) {
+    display: block;
+  }
+}
+.custom-height-flex-item {
+  @include display(flex);
+  @include respond-to(phones) {
+    display: block;
+  }
+}
+
+.custom-col-right {
+	padding-right: 5px;
+	@include respond-to(phones) {
+	    padding-right: 15px;
+	}
+}
+.custom-col-left {
+	padding-left: 5px;
+	@include respond-to(phones) {
+	    padding-left: 15px;
+	}
+}
+
+.embed-responsive.embed-responsive-16by9 {
+    padding-bottom: 56.25%;
+}
+.embed-responsive {
+    display: block;
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+}
+.embed-responsive .embed-responsive-item, .embed-responsive iframe, .embed-responsive embed, .embed-responsive object, .embed-responsive video {
+    border: 0 none;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+
+

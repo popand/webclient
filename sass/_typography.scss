@@ -1,0 +1,120 @@
+html, body {
+	font-family: $body-font-family;
+	font-size: $body-font-size;
+	line-height: $body-line-height;
+	color: $body-text-color;
+	-webkit-font-smoothing: antialiased;
+	margin-top: 31px;
+	@include respond-to(tablets-small) {
+        font-size: 0.875rem;
+        line-height: 1.4rem;
+    }
+    @include respond-to(phones) {
+    	line-height: 1rem;
+    	font-size: 0.75rem;
+    	margin-top: 32px;
+    }
+}
+
+* {
+	&:hover, &:focus {
+		outline: none;
+	}
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-size: $body-font-size;
+	font-family: $body-font-family;
+	margin-top: 0;
+	line-height: 2rem;
+	&:last-child {
+		margin-bottom: 0;
+	}
+	@include respond-to(phones) {
+		line-height: 1.4rem;
+	}
+}
+
+h1 {
+	font-size: 3.125rem;
+    margin-bottom: 20px;
+    @include respond-to(tablets-small) {
+    	font-size: 2.8rem;
+    }
+    @include respond-to(phones) {
+    	font-size: 2rem;
+    	line-height: 2.2rem;
+    }
+}
+
+h2 {
+	font-size: 2.14285714rem;
+	margin-bottom: 15px;
+	line-height: 2.4rem;
+	@include respond-to(tablets-small) {
+    	font-size: 1.8rem;
+    	line-height: 2.2rem;
+    }
+    @include respond-to(phones) {
+    	font-size: 1.52rem;
+    	line-height: 1.8rem;
+    }
+}
+
+h3 {
+	font-size: 1.688rem;
+	@include respond-to(tablets-small) {
+    	font-size: 1.5rem;
+    }
+    @include respond-to(phones) {
+    	font-size: 1.4rem;
+    }
+}
+
+h4 {
+	font-size: 1.5rem;
+	@include respond-to(tablets-small) {
+    	font-size: 1.3rem;
+    }
+    @include respond-to(phones) {
+    	font-size: 1.1rem;
+    }
+}
+
+h5 {
+	font-size: 1.3rem;
+	@include respond-to(tablets-small) {
+    	font-size: 1.1rem;
+    }
+}
+
+h6 {
+	font-size: 1.2rem;
+	line-height: 1.5rem;
+	@include respond-to(tablets-small) {
+    	font-size: 1rem;
+    	line-height: 1.3rem;
+    }
+}
+small {
+	font-size: 0.7rem;
+}
+
+a {
+	@include transition(150ms);
+	&:hover, &:focus {
+		text-decoration: underline;
+	}
+}
+
+button {
+	@include transition(150ms);
+}
+
+p {
+	margin-bottom: 20px;
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+

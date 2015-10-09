@@ -1,0 +1,419 @@
+/* Styles */
+
+
+/* ==========================================================================
+	Owl-big-carousel section
+========================================================================== */
+#owl-big-carousel {
+	.owl-pagination {
+		display: none;
+	}
+}
+.owl-pagination {
+	text-align: center;
+	margin-top: 20px;
+	.owl-page {
+		display: inline-block;
+		height: 10px;
+		width: 10px;
+		background: $white;
+		margin-right: 10px;
+		&:last-child {
+			margin-right: 0;
+		}
+		&.active {
+			background: $maroon-flush;
+		}
+		@include respond-to(phones) {
+			height: 6px;
+			width: 6px;
+		}
+	}
+}
+.owl-carousel {
+	img {
+		width: 100%;
+	}
+}
+.owl-buttons {
+	@include respond-to(phones) {
+		display: none;
+	}
+	>div {
+		position: absolute;
+		top: 48%;
+		&:before {
+			font-family: 'surf-fontello';
+			color: rgba(255, 255, 255, 0.75);
+			font-size: 3.8rem;
+			@include respond-to(tablets-small) {
+				font-size: 2.4rem;
+			}
+		}
+		&:hover {
+			&:before {
+				color: rgba(255, 255, 255, 1);
+			}
+		}
+	}
+}
+.owl-prev {
+	left: 25px;
+	@media (max-width: 1300px) {
+		left: 10px;
+		@include respond-to(tablets-small) {
+			left: 5px;
+		}
+	}
+	&:before {
+		@extend .icon-surf-left-open-big;
+	}
+}
+.owl-next {
+	right: 25px;
+	@media (max-width: 1300px) {
+		right: 10px;
+	}
+	@include respond-to(tablets-small) {
+		right: 5px;
+	}
+	&:before {
+		@extend .icon-surf-right-open-big;
+	}
+}
+.carousel-caption {
+	padding: 90px 0;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	text-align: left;
+	text-shadow: none;
+	color: $white;
+	@include respond-to(tablets-large) {
+		padding: 45px 0;
+	}
+	@include respond-to(phones) {
+		padding: 20px 0;
+	}
+	.custom-label {
+		margin-bottom: 20px;
+		@include respond-to(phones) {
+			margin-bottom: 10px;
+		}
+	}
+	h2 {
+		font-size: 3.42857143rem;
+		line-height: 4rem;
+		@include respond-to(tablets-large) {
+			font-size: 2rem;
+			line-height: 2.4rem;
+		}
+		@include respond-to(phones) {
+			font-size: 1.2rem;
+			line-height: 1.6rem;
+		}
+		@include respond-to(phones-small) {
+			font-size: 1rem;
+			line-height: 1.2rem;
+			margin-bottom: 10px;
+		}
+	}
+	h3 {
+		@include respond-to(phones) {
+			font-size: 0.9rem;
+			line-height: 1.1rem;
+		}
+		@include respond-to(phones-small) {
+			font-size: 0.75rem;
+			line-height: 1rem;
+		}
+	}
+}
+
+/* ==========================================================================
+	Owl-small-carousel section
+========================================================================== */
+#small-carousel-block {
+	.owl-wrapper-outer {
+		padding-bottom: 5px;
+	}
+	.owl-item {
+		padding: 0 25px;
+		>div {
+			border: 1px solid $alto;
+			padding: 9px;
+			background: $white;
+			position: relative;
+			&:before, &:after {
+				position: absolute;
+				z-index: -1;
+				margin: 0 auto;
+				content: '';
+				padding: 1.5px;
+				background: $white;
+				border: 1px solid $alto;
+			}
+			&:before {
+				bottom: -3px;
+			    left: 1%;
+			    width: 98%;
+			}
+			&:after {
+				bottom: -5px;
+			    left: 2%;
+			    width: 96%;
+			    z-index: -2;
+			}
+		}
+	}
+	.owl-prev {
+		left: -50px;
+		@media (max-width: 1300px) {
+			left: -20px;
+			@include respond-to(tablets-small) {
+				left: -20px;
+			}
+		}
+	}
+	.owl-next {
+		right: -50px;
+		@media (max-width: 1300px) {
+			right: -20px;
+		}
+		@include respond-to(tablets-small) {
+			right: -20px;
+		}
+	}
+}
+
+/* ==========================================================================
+	Latest video section
+========================================================================== */
+.latest-video-item-box {
+	margin-bottom: 10px;
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+.latest-video-item {
+	position: relative;
+	@include respond-to(phones) {
+		height: 100%;
+	}
+	img {
+		width: 100%;
+		height: 100%;
+	}
+}
+.video-overlay {
+	@include transition(150ms);
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 55%,  rgba(0, 0, 0, 0.7));
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 10px 10px 10px 15px;
+	&:hover {
+		box-shadow: 0 0 0 10px $maroon-flush inset;
+	}
+	.transparent-label {
+		font-family: $font-lato;
+		text-transform: none;
+	}
+	.top-box {
+		text-align: right;
+		p {
+			margin-bottom: 5px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+	.bottom-box {
+		position: absolute;
+		width: 100%;
+		bottom: 10px;
+		left: 0px;
+		padding-left: 15px;
+		.custom-label {
+			margin-bottom: 10px;
+		}
+		color: $white;
+		h2 {
+			margin-bottom: 2px;
+		}
+		h6 {
+			@include respond-to(phones) {
+				font-size: 0.8rem;
+			}
+		}
+		&.half-width {
+			width: 60%;
+			@include respond-to(tablets-small) {
+				width: 100%;
+			}
+		}
+	}
+}
+.play-btn {
+	z-index: 100;
+	display: block;
+	height: 70px;
+	width: 70px;
+	text-align: center;
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 50%;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -35px;
+	margin-top: -35px;
+	@include respond-to(tablets-small) {
+		height: 50px;
+		width: 50px;
+		margin-left: -25px;
+		margin-top: -25px;
+	}
+	i {
+		line-height: 70px;
+		color: $white;
+		font-size: 2.8rem;
+		&:before {
+			margin: 0;
+			width: 2em;
+		}
+		@include respond-to(tablets-small) {
+			line-height: 50px;
+			font-size: 2.2rem;
+		}
+	}
+	&:hover, &:focus {
+		background: rgba(0, 0, 0, 0.7);
+	}
+}
+
+/* ==========================================================================
+	Video box block section
+========================================================================== */
+#video-box-block {
+	padding: 10px 0 20px 0;
+}
+.iframe-box {
+	margin-bottom: 20px;
+}
+.video-caption {
+	color: $white;
+}
+
+
+
+/* ==========================================================================
+	Comment block section
+========================================================================== */
+#comment-block {
+	padding-top: 10px;
+	@include respond-to(tablets-large) {
+		padding-top: 50px;
+	}
+	@include respond-to(phones) {
+		padding: 25px 0;
+	}
+}
+.comment-header-box {
+	padding-bottom: 6px;
+	border-bottom: 1px solid $alto;
+	margin-bottom: 3px;
+	p {
+		color: $mine-shaft;
+	}
+	a {
+		color: $maroon-flush;
+	}
+}
+.comment-body-box {
+	border-bottom: 1px solid $alto;
+	border-top: 1px solid $alto;
+	padding-top: 10px;
+	img {
+		border-radius: 50%;
+	}
+	.media-heading {
+		color: $mine-shaft;
+		padding-right: 3px;
+		@include clearfix;
+		@include respond-to(phones-small) {
+			font-size: 0.85rem;
+		}
+		i {
+			margin: 0 3px;
+		}
+		i, .date, a {
+			font-size: 0.9rem;
+			@include respond-to(phones-small) {
+				font-size: 0.7rem;
+			}
+		}
+		.date {
+			color: $alto;
+			font-family: $font-lato;
+		}
+		a {
+			color: $maroon-flush;
+			float: right;
+			font-family: $font-lato;
+			font-style: italic;
+		}
+	}
+	p {
+		font-family: $font-lato;
+	}
+	.text-box {
+		border-bottom: 1px solid $alto;
+		padding-bottom: 10px;
+		margin-bottom: 10px;
+	}
+}
+.media.last-media {
+	.text-box {
+		border: none;
+	}
+}
+.main-comment {
+	img {
+		width: 80px;
+		height: 80px;
+		@include respond-to(phones-small) {
+			width: 40px !important;
+			height: 40px !important;
+		}
+	}
+}
+.re-comment {
+	img {
+		width: 56px;
+		height: 56px;
+		@include respond-to(phones-small) {
+			width: 24px !important;
+			height: 24px !important;
+		}
+	}
+}
+.media, .media-body {
+	width: 100%;
+}
+.media-left, .media-right, .media-body {
+    display: table-cell;
+    vertical-align: top;
+}
+.media-left, .media > .pull-left {
+    padding-right: 10px;
+}
+
+
+
+
+
+
