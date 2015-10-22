@@ -81,6 +81,7 @@ namespace app.core {
             const $q = this.$q;
             const $http = this.$http;
             config.cache = true;
+            config.headers = config.headers || {};
 
             return this
                 .authenticate(force)
@@ -89,7 +90,7 @@ namespace app.core {
                         return $q.reject('no token');
                     }
 
-                    $http.defaults.headers.common.Authorization = `Bearer ${token}`;
+                    config.headers.Authorization = `Bearer ${token}`;
                     return $http(config)
                         .catch((response: any) => {
                             if (!force && response.status === 401) {
@@ -107,10 +108,15 @@ namespace app.core {
         /**
          * Request all pages.
          * @param  {ng.IRequestConfig} config
+         * @param  {function} iteratee
          * @param  {number} pageSize
          * @return {ng.IPromise<any>}
          */
-        requestAll(config: ng.IRequestConfig, pageSize = 20): ng.IPromise<any> {
+        requestAll(
+            config: ng.IRequestConfig,
+            iteratee = (x: any) => x.responseObject,
+            pageSize = 20
+        ): ng.IPromise<any> {
             var next = (config: ng.IRequestConfig, content: any[]): ng.IPromise<any> => {
                 return this.request(config)
                     .then(
@@ -122,13 +128,13 @@ namespace app.core {
                                 return this.$q.reject(data.message);
                             }
 
-                            var responseObject = data.responseObject;
-                            if (!responseObject) {
+                            var pagedData = iteratee(data);
+                            if (!pagedData) {
                                 return data;
                             }
 
-                            content = content.concat(responseObject.content || []);
-                            if (responseObject.last === false) {
+                            content = content.concat(pagedData.content || []);
+                            if (pagedData.last === false) {
                                 var config = response.config;
                                 config.params.pageNumber += 1;
                                 return next(config, content);
@@ -215,10 +221,10 @@ namespace app.core {
          * List of comments for the selected movie.
          * @param {string} productId  [description]
          */
-        getReviews(productId: string) {
+        getReviews(productId: string): ng.IPromise<models.IReview[]> {
             return this.requestAll({
                     method: 'GET',
-                    url: this.url.get(`/reviewservice/v1/review/findAll/product/${productId}`)
+                    url: this.api(`/reviewservice/v1/review/findAll/product/${productId}`)
                 });
         }
 
@@ -226,17 +232,13 @@ namespace app.core {
          * List of movies recommended
          * @param {string} productId  [description]
          */
-        getRecommendations(productId: string) {
-            return this.requestAll({
-                    method: 'GET',
-                    url: this.api(`/recommendationservice/recommendation/product/${productId}`)
-                })
-                .then(
-                    (content: any) => {
-                        console.log('getRecommendations', content);
-                        return content;
-                    }
-                );
+        getRecommendations(productId: string): ng.IPromise<models.IProduct[]> {
+            const config =  {
+                method: 'GET',
+                url: this.api(`/recommendationservice/v1/recommendation/product/${productId}`)
+            };
+
+            return this.requestAll(config, (x: any) => x.responseObject.products);
         }
     }
 

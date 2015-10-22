@@ -98,4 +98,14 @@ namespace models {
       purchaseOptionId: string;
       offerId: string;
     }
+
+    export interface IReview {
+        id: string;
+        comment: string;
+        createDate: string;
+        customerId: string;
+        deleteDate: string;
+        productId: string;
+        tenantId: string;
+    }
 }

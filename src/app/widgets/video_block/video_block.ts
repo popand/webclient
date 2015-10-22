@@ -19,7 +19,7 @@ namespace app.widget {
         return _.memoize(chunkByWeight, chunkByWeightResolver);
 
         function chunkByWeight(items: models.IProduct[], chunkWeight = 3) {
-            if (!items.length) {
+            if (_.isEmpty(items)) {
                 return [];
             }
 
@@ -69,7 +69,7 @@ namespace app.widget {
         }
 
         function chunkByWeightResolver(items: models.IProduct[], chunkWeight = 3) {
-            return items.reduce((sum, x) => sum + x.id, chunkWeight.toString());
+            return _.isEmpty(items) ? '' : items.reduce((sum, x) => sum + x.id, chunkWeight.toString());
         }
     }
 

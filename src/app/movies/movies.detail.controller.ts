@@ -11,7 +11,8 @@ namespace app.movies {
         ];
 
         video = {title: '', longDescription: ''};
-        relatedVideos: models.IProduct[] = [];
+        comments: models.IReview[];
+        relatedVideos: models.IProduct[];
 
         constructor(
             $state: ng.ui.IStateService,
@@ -41,6 +42,11 @@ namespace app.movies {
                     }
 
                     this.relatedVideos = products;
+                });
+
+            dataService.getReviews(id)
+                .then(reviews => {
+                    this.comments = reviews;
                 });
         }
     }

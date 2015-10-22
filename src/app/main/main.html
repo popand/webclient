@@ -32,7 +32,7 @@
         <owl-carousel id="owl-small-carousel" class="owl-carousel" owl-options="ctrl.carousel.small">
 
             <div owl-carousel-item ng-repeat="product in ctrl.products.shows">
-                <img ng-src="{{product.image.imageURL}}" alt="">
+                <a ui-sref="movies.detail({id: product.id})"><img ng-src="{{product.image.imageURL}}" alt=""></a>
             </div>
 
         </owl-carousel><!-- owl-big-carousel -->

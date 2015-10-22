@@ -2,15 +2,10 @@ namespace app.movies {
     'use strict';
 
     class CommentSectionController {
-        static $inject = ['$stateParams', 'dataService'];
         collapsed = false;
+        comments: models.IReview[];
 
-        constructor(
-            $stateParams: any,
-            dataService: app.core.DataService
-        ) {
-            dataService.getReviews($stateParams.id);
-        }
+        constructor() {}
 
         onCollapseClick(event: ng.IAngularEvent) {
             event.preventDefault();
@@ -22,7 +17,9 @@ namespace app.movies {
         scope = {};
         controller = CommentSectionController;
         controllerAs = 'ctrl';
-        bindToController = {};
+        bindToController = {
+            comments: '='
+        };
         templateUrl = 'app/movies/comment_section.html';
     }
 
