@@ -1,0 +1,47 @@
+<header ng-class="['navbar-fixed-top', {inner: ctrl.inner}]">
+
+    <a ng-show="ctrl.inner" ui-sref="main" class="back"><i class="icon-surf-left-open-big"></i></a>
+
+    <nav class="navbar">
+
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse">
+                    <i class="icon-surf-menu"></i>
+                </button>
+
+                <a class="header-logo" ui-sref="main"><img src="images/elements/skatelogo.png" alt=""></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="collapse">
+                <ul class="navbar-nav">
+                    <li><a ui-sref="movies">Extreme Channel</a></li>
+                    <li><a href="#">Clips</a></li>
+                    <li><a href="#">New Videos</a></li>
+                    <li><a href="#">Shows</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Extreme Network<i class="icon-surf-down-micro"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right header-form" role="search">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Search">
+                      <button type="submit"><i class="icon-surf-search"></i></button>
+                    </div><!-- form-group -->
+                </form>
+            </div><!-- /.navbar-collapse -->
+
+        </div><!-- /.container -->
+
+    </nav><!-- navbar -->
+
+</header>

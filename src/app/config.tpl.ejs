@@ -1,0 +1,8 @@
+var app;
+(function (app) {
+angular.module("<%- moduleName %>")
+<% constants.forEach(function(constant) { %>
+.constant("<%- constant.name %>", <%= constant.value %>)
+<% }) %>
+;
+})(app || (app = {}));

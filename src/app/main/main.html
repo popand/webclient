@@ -1,0 +1,51 @@
+<div id="big-carousel-block">
+
+    <owl-carousel id="owl-big-carousel" owl-options="ctrl.carousel.big" class="owl-carousel">
+        <div owl-carousel-item ng-repeat="product in ctrl.products.carousel">
+            <a ui-sref="movies.detail({id: product.id})"><img ng-src="{{::product.image.imageURL}}" alt=""></a>
+            <div class="carousel-caption">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-8 col-sm-12">
+                            <span class="custom-label" ng-repeat="actor in product.actors">{{::actor}}</span>
+                            <h2>{{::product.shortTitle}}</h2>
+                            <h3>{{::product.shortDescription}}</h3>
+                        </div><!-- col -->
+                    </div><!-- row -->
+                </div><!-- container -->
+            </div><!-- carousel-caption -->
+        </div>
+    </owl-carousel><!-- owl-big-carousel -->
+
+</div><!-- big-carousel-block -->
+
+<section id="small-carousel-block" class="grey-section">
+
+    <div class="container">
+
+        <span class="custom-label big-label">Shows</span>
+
+            <!-- 5 items above 1000px browser width -->
+            <!-- 4 items between 1000px and 901px -->
+            <!-- 2 items between 600 and 0 -->
+            <!-- itemsMobile disabled - inherit from itemsTablet option -->
+        <owl-carousel id="owl-small-carousel" class="owl-carousel" owl-options="ctrl.carousel.small">
+
+            <div owl-carousel-item ng-repeat="product in ctrl.products.shows">
+                <img ng-src="{{product.image.imageURL}}" alt="">
+            </div>
+
+        </owl-carousel><!-- owl-big-carousel -->
+
+    </div><!-- container -->
+
+</section><!-- small-carousel-block -->
+
+
+<video-block
+    id="latest-video-block"
+    label="Latest Videos"
+    videos="ctrl.products.latest"
+>
+</video-block>
+

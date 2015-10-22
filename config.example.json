@@ -1,0 +1,8 @@
+{
+    "CONFIG": {
+        "appTitle": "webclient",
+        "apiUrl": "http://54.165.55.11:8765",
+        "debug": true,
+        "localStoragePrefix": "webclient"
+    }
+}
