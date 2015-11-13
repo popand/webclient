@@ -7,9 +7,27 @@ form {
 	position: relative;
 }
 
+label {
+	color: $black;
+	font-family: $font-franklin;
+}
+
+.checkbox, .radio {
+	label {
+		font-family: $font-lato;
+		font-style: italic;
+		a {
+			color: $maroon-flush;
+		}
+	}
+}
+
 //Header form
 .header-form {
 	margin: 11px 0 0 0;
+	@include respond-to(tablets-large) {
+		max-width: 200px;
+	}
 	@include respond-to(tablets-small) {
 		max-width: 160px;
 	}
@@ -45,7 +63,7 @@ form {
 		border: none;
 	}
 	i {
-		color: $emperor;
+		color: $color-alto;
 		@include respond-to(phones) {
 			font-size: 1rem;
 		}
@@ -73,6 +91,7 @@ legend {
 input.form-control, textarea.form-control, select.form-control {
 	background: $porcelain;
 	box-shadow: none;
+	border-color: $color-alto-boulder;
 	&:focus {
 		box-shadow: 0 1px 10px rgba(204, 28, 74, 0.4) inset, 0 0 12px rgba(204, 28, 74, 0.8);
 		border: 1px solid $maroon-flush;
@@ -84,6 +103,31 @@ textarea.form-control, textarea {
 	height: 145px;
 	@include respond-to(phones) {
 		height: 80px;
+	}
+}
+
+.search-holder {
+	margin-bottom: 20px;
+}
+.clear_input {
+	font-size: 26px;
+	color: $emperor;
+	&:hover, &:focus {
+		color: $maroon-flush;
+	}
+}
+.form-control {
+	&.clearable {
+		background:transparent;
+		box-shadow: none;
+		border-radius: 0;
+		border: none;
+		border-bottom: 1px solid $emperor;
+		&:focus {
+			border: none;
+			box-shadow: none;
+			border-bottom: 1px solid $maroon-flush;
+		}
 	}
 }
 

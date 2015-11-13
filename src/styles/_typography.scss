@@ -10,10 +10,15 @@ html, body {
         line-height: 1.4rem;
     }
     @include respond-to(phones) {
-    	line-height: 1rem;
-    	font-size: 0.75rem;
+    	line-height: 16px;
+    	font-size: 12px;
     	margin-top: 32px;
     }
+}
+
+html {
+	position: relative;
+	min-height: 100%;
 }
 
 * {
@@ -116,5 +121,17 @@ p {
 	&:last-child {
 		margin-bottom: 0;
 	}
+}
+
+.italic {
+	font-style: italic;
+}
+.underline {
+	text-decoration: underline;
+}
+
+/* Color classes */
+.red {
+	color: $maroon-flush;
 }
 

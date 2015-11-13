@@ -1,0 +1,47 @@
+/* Modal */
+
+.modal {
+    .modal-dialog {
+        margin-top: 5%;
+        @include respond-to(phones) {
+            margin-top: 0;
+        }
+    }
+    .modal-content {
+        border-radius: 0;
+        background: $concerete;
+        border: none;
+    }
+    .close {
+        color: $black;
+        opacity: 1;
+        &:hover {
+            color: $maroon-flush;
+        }
+    }
+    .modal-header {
+        border-bottom: none;
+    }
+    .btn-holder {
+        margin-top: 25px;
+        max-width: 100%;
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+.modal-title {
+    font-family: $font-franklin;
+    color: $black;
+}
+/* Login modal */
+#login-modal {
+    .modal-header {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 5px;
+    }
+    .modal-body {
+        padding-top: 5px;
+    }
+}

@@ -3,7 +3,7 @@
 	display: inline-block;
 	border-radius: 3px;
 	border: 1px solid $maroon-flush;
-	padding: 6px 28px;
+	padding: 8px 28px;
 	color: $white;
 	background: $cod-gray-light;
 	text-align: center;
@@ -18,11 +18,36 @@
 			margin-left: 5px;
 		}
 	}
+	&.icon-left {
+		i {
+			margin-right: 5px;
+		}
+	}
 	&.red-btn {
 		background: $maroon-flush;
 		border: none;
 		&:hover, &:focus {
-			background: $cod-gray-light;
+			background: darken($maroon-flush, 10%);
+		}
+	}
+	&.white-btn {
+		background: $white;
+		border: none;
+		color: $maroon-flush;
+		&:hover, &:focus {
+			background: darken($white, 10%);
+			color: $maroon-flush;
+		}
+	}
+	&.block-btn {
+		display: block;
+		width: 100%;
+	}
+	&.fb-btn {
+		background:$color-chambray;
+		border-color: $color-chambray;
+		&:hover, &:focus {
+			background: darken($color-chambray, 10%);
 		}
 	}
 }

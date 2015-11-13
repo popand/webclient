@@ -94,7 +94,7 @@
 		padding: 45px 0;
 	}
 	@include respond-to(phones) {
-		padding: 20px 0;
+		padding: 5px 0;
 	}
 	.custom-label {
 		margin-bottom: 20px;
@@ -127,6 +127,53 @@
 		@include respond-to(phones-small) {
 			font-size: 0.75rem;
 			line-height: 1rem;
+		}
+	}
+	&.carousel-caption-table {
+		.row {
+			display: table;
+			width: 100%;
+			@include respond-to(phones) {
+				display: block;
+			}
+			>div {
+				float: none;
+				display: table-cell;
+				vertical-align: bottom;
+				@include respond-to(phones) {
+					display: block;
+				}
+			}
+		}
+		.btn-holder {
+			text-align: right;
+			@include respond-to(tablets-large) {
+				.custom-btn {
+					display: block;
+					margin-bottom: 5px;
+					&:last-child {
+						margin-bottom: 0;
+					}
+				}
+			}
+			@include respond-to(phones) {
+				text-align: left;
+				.custom-btn {
+					padding: 4px 20px;
+					display: inline-block;
+					margin-bottom: 0;
+				}
+			}
+		}
+		.push-down {
+			@include respond-to(phones) {
+		  		margin-bottom: 10px;
+			}
+		}
+		.push-sm-down {
+			@include respond-to(tablets-small) {
+		  		margin-bottom: 10px;
+			}
 		}
 	}
 }
@@ -412,6 +459,33 @@
     padding-right: 10px;
 }
 
+.no-result-holder {
+	text-align: center;
+	i {
+		color: $color-mine-shaft;
+		font-size: 500px;
+		@include respond-to(tablets-small) {
+			font-size: 340px;
+		}
+		@include respond-to(phones) {
+			font-size: 220px;
+		}
+		@include respond-to(phones-small) {
+			font-size: 180px;
+		}
+	}
+}
+
+.image-section {
+	position: relative;
+	padding-bottom: 40%;
+	img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+	}
+}
 
 
 

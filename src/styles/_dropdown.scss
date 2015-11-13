@@ -1,0 +1,22 @@
+/*DROPDOWN*/
+.dropdown-menu {
+	min-width: 196px;
+	border-radius: 0;
+	font-family: $font-lato;
+	border: 1px solid $color-emperor;
+	background: $color-cod-gray;
+	>li {
+		>a {
+			padding-left: 10px;
+			padding-right: 10px;
+			@include clearfix();
+			display: block;
+			background: $color-cod-gray;
+			color: $white;
+			&:hover, &:focus {
+				color: $color-stack;
+				background:transparent;
+			}
+		}
+	}
+}

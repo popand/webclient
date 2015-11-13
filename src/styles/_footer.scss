@@ -1,9 +1,15 @@
 /* FOOTER */
 footer {
+	height: 124px;
+	position: absolute;
+	width: 100%;
+	bottom: -124px;
 	background: $footer-bg;
 	padding: 36px 0;
 	@include respond-to(phones) {
 		padding: 25px 0;
+		position: static;
+		height: auto;
 	}
 }
 .footer-logo {

@@ -46,7 +46,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'surf-fontello';
-    src: url('../fonts/surf-fontello.svg?82184873#surf-fontello') format('svg');
+    src: url('../font/surf-fontello.svg?82184873#surf-fontello') format('svg');
   }
 }
 
@@ -96,4 +96,9 @@
 .icon-surf-share:before { content: '\e80b'; } /* '' */
 .icon-surf-chat:before { content: '\e80c'; } /* '' */
 .icon-surf-right-dir:before { content: '\e80d'; } /* '' */
+.icon-surf-cancel:before { content: '\e80e'; } /* '' */
+.icon-surf-info-circled:before { content: '\e80f'; } /* '' */
+.icon-surf-facebook-squared:before { content: '\e810'; } /* '' */
+.icon-surf-emo-unhappy:before { content: '\e811'; } /* '' */
+.icon-surf-logout:before { content: '\e812'; } /* '' */
 

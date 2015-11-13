@@ -15,14 +15,7 @@ header {
 		}
 		>li {
 			display: inline-block;
-			margin-right: 60px;
-			&:last-child {
-				margin-right: 0;
-				margin-left: 60px;
-				@include respond-to(phones) {
-					margin-left: 0;
-				}
-			}
+			margin-right: 25px;
 			@include respond-to(tablets-large) {
 				margin-right: 15px;
 			}
@@ -33,25 +26,56 @@ header {
 				margin-right: 0;
 				display: block;
 			}
-		}
-		a {
-			color: $dove-gray;
-			line-height: 51px;
-			text-transform: uppercase;
-			&:hover, &:focus {
-				color: $white;
+			>a {
+				color: $color-alto-boulder;
+				line-height: 51px;
+				text-transform: uppercase;
+				.caret {
+					border-top-color: $color-alto;
+				}
+				&:hover, &:focus {
+					color: $white;
+				}
+				@include respond-to(tablets-large) {
+					font-size: 0.9rem;
+				}
+				@include respond-to(tablets-small) {
+					font-size: 0.65rem;
+				}
+				@include respond-to(phones) {
+					font-size: 1rem;
+					line-height: 100%;
+					padding: 4px 0;
+					display: inline-block;
+				}
 			}
-			@include respond-to(tablets-large) {
-				font-size: 0.9rem;
-			}
-			@include respond-to(tablets-small) {
-				font-size: 0.75rem;
-			}
-			@include respond-to(phones) {
-				font-size: 1rem;
-				line-height: 100%;
-				padding: 4px 0;
-				display: inline-block;
+			&.user-name-holder {
+				border: 1px solid $color-emperor;
+				margin-top: 8px;
+				box-shadow: 1px 1px 0px 1px rgba($black, .75);
+				>a {
+					color: $color-alto-boulder;
+					display: block;
+					padding: 5px 10px;
+					line-height: 24px;
+					text-transform: none;
+					&:hover, &:focus {
+						color: $color-alto-boulder;
+					}
+				}
+				.user-name {
+					color: $white;
+					&:hover, &:focus {
+						color: $maroon-flush;
+					}
+					.caret {
+						margin-left: 10px;
+						border-top-color: $maroon-flush;
+					}
+				}
+				.dropdown-menu {
+					right: -1px;
+				}
 			}
 		}
 	}
@@ -63,7 +87,13 @@ header {
 		}
 	}
 }
+
 .navbar-nav {
+	&:last-child {
+		>li {
+			margin-right: 0;
+		}
+	}
 	.dropdown {
 		a {
 			color: $maroon-flush;
@@ -109,8 +139,8 @@ header {
 	img {
 		width: 100%;
 	}
-	@include respond-to(tablets-small) {
-		margin-right: 20px;
+	@include respond-to(tablets-large) {
+		margin-right: 15px;
 	}
 	@include respond-to(phones) {
 		margin: 0;

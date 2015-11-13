@@ -32,12 +32,12 @@ ul, li {
 
 .push-sm-down {
 	@include respond-to(tablets-small) {
-  	margin-bottom: 20px;
+  		margin-bottom: 20px;
 	}
 }
 .push-down {
 	@include respond-to(phones) {
-  	margin-bottom: 20px;
+  		margin-bottom: 20px;
 	}
 }
 .push-down-small {
@@ -60,8 +60,11 @@ section {
 	position: relative;
 	padding: 50px 0;
 	@include respond-to(phones) {
-		padding: 25px 0;
+		padding: 40px 0;
 	}
+}
+.section-no-padding-top {
+	padding-top: 0;
 }
 .grey-section {
 	background: $concerete;
@@ -117,5 +120,26 @@ section {
     width: 100%;
 }
 
+.mb {
+	margin-bottom: 20px;
+}
 
+.divider {
+	height: 25px;
+}
+.divider-horizontal {
+	display: inline-block;
+	width: 20px;
+}
+
+hr {
+	border-color: $color-alto-boulder;
+}
+
+.full-width {
+	width: 100%;
+}
+.text-uppercase {
+	text-transform: uppercase;
+}
 
