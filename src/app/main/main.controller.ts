@@ -32,7 +32,7 @@ namespace app.main {
                     navigation : true,
                     navigationText : ['', ''],
                     singleItem : true,
-                    autoPlay: 3600,
+                    autoPlay: 3000,
                     // Basic Speeds
                     slideSpeed : 800,
                     paginationSpeed : 1000,

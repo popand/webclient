@@ -10,7 +10,7 @@
 
                 <div class="row custom-height-flex">
 
-                    <div ng-repeat="item in group track by item.id" ng-class="['custom-height-flex-item', 'col-sm-' + 4 * item.weight, {'custom-col-right push-down': !$last, 'custom-col-left': !$first}]">
+                    <div ng-repeat="item in group" ng-class="['custom-height-flex-item', 'col-sm-' + 4 * item.weight, {'custom-col-right push-down': !$last, 'custom-col-left': !$first}]">
                         <div class="latest-video-item">
                             <img ng-src="{{item.image.imageURL}}" alt="">
                             <div class="video-overlay">
@@ -18,7 +18,7 @@
                                     <p><span class="custom-label transparent-label">4 Days Ago</span></p>
                                     <p><span class="custom-label transparent-label">Episode</span></p>
                                 </div><!-- top-box -->
-                                <a ui-sref="movies.detail({id: item.id})" class="play-btn"><i class="icon-surf-play"></i></a>
+                                <a ui-sref="movies.detail({id: item.productId})" class="play-btn"><i class="icon-surf-play"></i></a>
                                 <div class="bottom-box" ng-class="{'half-width': item.weight === 2}">
                                     <span class="custom-label" ng-repeat="actor in item.actors">{{::actor}}</span>
                                     <h2>{{::item.shortTitle}}</h2>

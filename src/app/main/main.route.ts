@@ -17,7 +17,7 @@ namespace app.main {
                     templateUrl: 'app/main/main.html',
                     controller: 'MainController',
                     controllerAs: 'ctrl',
-                    title: 'Shuvit TV :: Main'
+                    title: 'Surf: Home'
                 }
             }
         ];

@@ -16,6 +16,7 @@ namespace models {
 
     export interface IImage {
         id: string;
+        imageId: string;
         imageHeight: number;
         imageType: string; // enum?
         imageURL: string;
@@ -24,6 +25,7 @@ namespace models {
 
     export interface IMedia {
       id: string;
+      mediaId: string;
       componentId: string;
       screenFormat: string;
       aspectRatio: string;
@@ -34,10 +36,11 @@ namespace models {
 
     export interface IProduct {
         id: string;
+        productId: string;
         name: string;
         studio: string;
         subtitleList: string[];
-        genres: IGenre[];
+        genres: string[];
         comingSoon: boolean;
         seoUrl: string;
         network: any;

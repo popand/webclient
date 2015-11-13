@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "jquery": "~2.1.3",
+    "jquery-clearsearch": "https://github.com/waslos/jquery-clearsearch",
     "modernizr": "2.8.3",
     "holderjs": "~2.8.2",
     "owlcarousel": "master",
@@ -18,7 +19,8 @@
     "angular-shims-placeholder": "~0.4.5",
     "angular-holderjs": "~1.1.0",
     "angular-local-storage": "~0.2.3",
-    "angular-bootstrap": "~0.14.2"
+    "angular-bootstrap": "~0.14.2",
+    "bootstrap-select": "~1.7.5"
   },
   "overrides": {
     "owlcarousel": {

@@ -1,6 +1,4 @@
-<header ng-class="['navbar-fixed-top', {inner: ctrl.inner}]">
-
-    <a ng-show="ctrl.inner" ui-sref="main" class="back"><i class="icon-surf-left-open-big"></i></a>
+<header class="navbar-fixed-top">
 
     <nav class="navbar">
 
@@ -10,14 +8,13 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse">
                     <i class="icon-surf-menu"></i>
                 </button>
-
-                <a class="header-logo" ui-sref="main"><img src="images/elements/skatelogo.png" alt=""></a>
+                <a class="header-logo" href="#"><img src="images/elements/logo.png" alt=""></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="collapse">
                 <ul class="navbar-nav">
-                    <li><a ui-sref="movies">Extreme Channel</a></li>
+                    <li><a href="#">Extreme Channel</a></li>
                     <li><a href="#">Clips</a></li>
                     <li><a href="#">New Videos</a></li>
                     <li><a href="#">Shows</a></li>
@@ -32,12 +29,20 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="navbar-form navbar-right header-form" role="search">
+                <form class="navbar-form header-form navbar-left">
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Search">
                       <button type="submit"><i class="icon-surf-search"></i></button>
                     </div><!-- form-group -->
-                </form>
+                </form><!-- header-form -->
+                <ul class="navbar-nav navbar-right">
+                    <li class="dropdown user-name-holder">
+                        <a href="#" data-toggle="dropdown">Hello, <span class="user-name">Anthony Stevens <span class="caret"></span></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><span class="pull-left">Log Out</span> <i class="icon-surf-logout pull-right"></i></a></li>
+                        </ul><!-- dropdown-menu -->
+                    </li><!-- dropdown -->
+                </ul>
             </div><!-- /.navbar-collapse -->
 
         </div><!-- /.container -->

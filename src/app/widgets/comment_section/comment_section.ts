@@ -1,4 +1,4 @@
-namespace app.movies {
+namespace app.widget {
     'use strict';
 
     class CommentSectionController {
@@ -20,10 +20,10 @@ namespace app.movies {
         bindToController = {
             comments: '='
         };
-        templateUrl = 'app/movies/comment_section.html';
+        templateUrl = 'app/widgets/comment_section/comment_section.html';
     }
 
     angular
-        .module('app.movies')
+        .module('app.widgets')
         .directive('commentSection', () => new CommentSectionDirective());
 }

@@ -1,15 +1,15 @@
 <div id="big-carousel-block">
 
     <owl-carousel id="owl-big-carousel" owl-options="ctrl.carousel.big" class="owl-carousel">
-        <div owl-carousel-item ng-repeat="product in ctrl.products.carousel">
-            <a ui-sref="movies.detail({id: product.id})"><img ng-src="{{::product.image.imageURL}}" alt=""></a>
+        <div owl-carousel-item ng-repeat="item in ctrl.products.carousel">
+            <a ui-sref="movies.detail({id: item.productId})"><img ng-src="{{::item.image.imageURL}}" alt=""></a>
             <div class="carousel-caption">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 col-md-8 col-sm-12">
-                            <span class="custom-label" ng-repeat="actor in product.actors">{{::actor}}</span>
-                            <h2>{{::product.shortTitle}}</h2>
-                            <h3>{{::product.shortDescription}}</h3>
+                            <span class="custom-label" ng-repeat="actor in item.actors">{{::actor}}</span>
+                            <h2>{{::item.shortTitle}}</h2>
+                            <h3>{{::item.shortDescription}}</h3>
                         </div><!-- col -->
                     </div><!-- row -->
                 </div><!-- container -->
@@ -31,8 +31,8 @@
             <!-- itemsMobile disabled - inherit from itemsTablet option -->
         <owl-carousel id="owl-small-carousel" class="owl-carousel" owl-options="ctrl.carousel.small">
 
-            <div owl-carousel-item ng-repeat="product in ctrl.products.shows">
-                <a ui-sref="movies.detail({id: product.id})"><img ng-src="{{product.image.imageURL}}" alt=""></a>
+            <div owl-carousel-item ng-repeat="show in ctrl.products.shows">
+                <a ui-sref="movies.detail({id: show.productId})"><img ng-src="{{show.image.imageURL}}" alt=""></a>
             </div>
 
         </owl-carousel><!-- owl-big-carousel -->

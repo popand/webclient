@@ -25,7 +25,7 @@ namespace app.movies {
                     templateUrl: 'app/movies/movies.detail.html',
                     controller: 'MoviesDetailController',
                     controllerAs: 'ctrl',
-                    title: 'Shuvit TV :: Movie'
+                    title: 'Surf :: Movie'
                 }
             }
         ];

@@ -23,6 +23,10 @@ namespace app.widget {
                 return [];
             }
 
+            if (_.any(items, x => !x.image)) {
+                return [];
+            }
+
             // Find image weights based on their width.
             // items = _.clone(items);
             var sum = _.sum(items.map(x => x.image.imageWidth));
