@@ -35,6 +35,10 @@ namespace app.core {
     export type ISuccessResponse = ng.IHttpPromiseCallbackArg<ISuccessData>;
     export type IErrorResponse = ng.IHttpPromiseCallbackArg<IErrorData>;
 
+    function getResponseObject(response: any) {
+        return response.data.responseObject;
+    }
+
     export class DataService {
         static $inject = ['$http', '$q', 'url', 'localStorageService', 'logger'];
 
@@ -52,117 +56,123 @@ namespace app.core {
         }
 
         /**
-         * [authenticate description]
-         * @param {[type]} force = false [description]
-         */
-        authenticate(force = false) {
-            var storage = this.storage;
-            var token: ng.IPromise<string>;
-
-            if (force || !storage.get('auth.token')) {
-                token = this.getAccessToken().then((token) => {
-                    storage.set('auth.token', token);
-                    return token;
-                });
-            } else {
-                token = this.$q.when(storage.get('auth.token'));
-            }
-
-            return token;
-        }
-
-        /**
          * [request description]
          * @param  {ng.IRequestConfig} config [description]
-         * @param  {boolean} force = false [description]
          * @return {ng.IPromise<any>} [description]
          */
-        request(config: ng.IRequestConfig, force = false): ng.IPromise<any> {
+        request(config: ng.IRequestConfig): ng.IPromise<any> {
             const $q = this.$q;
             const $http = this.$http;
-            config.cache = true;
-            config.headers = config.headers || {};
+            const storage = this.storage;
+            const self = this;
 
-            return this
-                .authenticate(force)
-                .then((token) => {
-                    if (!token) {
-                        return $q.reject('no token');
-                    }
+            return this.ensureAccessToken()
+                .then(doRequest)
+                .catch(invalidAccessToken);
 
-                    config.headers.Authorization = `Bearer ${token}`;
-                    return $http(config)
-                        .catch((response: any) => {
-                            if (!force && response.status === 401) {
-                                return this.request(config, true);
-                            }
-                            return $q.reject(response);
-                        })
-                        .then((response) => {
-                            return response;
-                        });
-                });
+            function doRequest(token: string) {
+                if (!token) {
+                    return $q.reject('no token');
+                }
+
+                return $http(withAuthHeaders(config));
+            }
+
+            function invalidAccessToken(response: any) {
+                var error = response.data.error;
+                var skip = error && error !== 'invalid_token';
+
+                if (!skip && response.status === 401) {
+                    return self.ensureAccessToken(true).then(doRequest);
+                }
+
+                return $q.reject(response);
+            }
+
+            function withAuthHeaders(config: any) {
+                var headers = config.headers || {};
+
+                var accessToken = storage.get('libertas.access_token');
+                if (accessToken) {
+                    headers.Authorization = 'Bearer ' + accessToken;
+                } else {
+                    headers.Authorization = undefined;
+                }
+
+                var userToken = storage.get('libertas.user_token');
+                if (userToken) {
+                    headers.UserAuthorization = userToken;
+                } else {
+                    headers.UserAuthorization = undefined;
+                }
+
+                config.headers = headers;
+                return config;
+            }
         }
 
+        ensureAccessToken(force = false) {
+            var token = this.storage.get('libertas.access_token');
+
+            if (force || !token) {
+                token = this.fetchAccessToken();
+                this.storage.set('libertas.access_token', token);
+            } else {
+                token = this.$q.when(token);
+            }
+
+            return <ng.IPromise<string>>token;
+        }
+
+        fetchAccessToken() {
+            var config: any = {
+                method: 'POST',
+                url: this.api('/securityservice/oauth/token'),
+                params: { 'grant_type': 'client_credentials' },
+                headers: { 'Authorization': 'Basic dmlwYWFzLXVzZXI6c2VjcmV0' }
+            };
+
+            return this.$http(config)
+                .then((response: any) => {
+                    var token = response.data['access_token'];
+                    this.storage.set('libertas.access_token', token);
+                    return token;
+                });
+        }
 
         /**
          * Request all pages.
-         * @param  {ng.IRequestConfig} config
+         * @param  {ng.IPromise<any>} request
          * @param  {function} iteratee
-         * @param  {number} pageSize
          * @return {ng.IPromise<any>}
          */
-        requestAll(
-            config: ng.IRequestConfig,
-            iteratee = (x: any) => x.responseObject,
-            pageSize = 20
-        ): ng.IPromise<any> {
-            var next = (config: ng.IRequestConfig, content: any[]): ng.IPromise<any> => {
-                return this.request(config)
-                    .then(
-                        (response: ISuccessResponse) => {
-                            var data = response.data;
+        all(promise: ng.IPromise<any>, iteratee = getResponseObject) {
+            var next = (promise: ng.IPromise<any>, content: any[]): ng.IPromise<any> => {
+                return promise.then((response: any) => {
+                    var data = response.data;
 
-                            if (data.success !== true) {
-                                this.logger.error(data.message, data.errors);
-                                return this.$q.reject(data.message);
-                            }
+                    if (data.success !== true) {
+                        this.logger.error('next', data.message, data.errors);
+                        return this.$q.reject(data.message);
+                    }
 
-                            var pagedData = iteratee(data);
-                            if (!pagedData) {
-                                return data;
-                            }
+                    var pagedData = iteratee(response);
+                    if (!pagedData) {
+                        return data;
+                    }
 
-                            content = content.concat(pagedData.content || []);
-                            if (pagedData.last === false) {
-                                var config = response.config;
-                                config.params.pageNumber += 1;
-                                return next(config, content);
-                            }
+                    content = content.concat(pagedData.content || []);
+                    if (pagedData.last === false) {
+                        var config = response.config;
+                        config.params.pageNumber += 1;
+                        return next(this.request(config), content);
+                    }
 
-                            return content;
-                        }
-                    );
+                    return content;
+                });
             };
 
-            config.params = _.extend(config.params || {}, {pageSize: 20, pageNumber: 0});
-            return next(config, []);
-        }
-
-
-        /**
-         * In order to use any of the apis an oauth2 token will been be provided with each request.
-         */
-        getAccessToken() {
-            var url = this.api('/securityservice/oauth/token');
-            var params = {grant_type: 'client_credentials'};
-            this.$http.defaults.headers.post.Authorization = 'Basic dmlwYWFzLXVzZXI6c2VjcmV0';
-
-            return this.$http
-                .post(url, null, {params: params})
-                .then((response: any) => {
-                    return response.data['access_token'];
-                });
+            return next(promise, []);
         }
 
 
@@ -172,10 +182,16 @@ namespace app.core {
          * @return {ng.IPromise<models.IPromotion[]>} [description]
          */
         getPromotions(): ng.IPromise<models.IPromotion[]> {
-            return this.requestAll({
-                    method: 'GET',
-                    url: this.api('/promotionservice/v1/promotion/findAll')
-                });
+            var request = this.request({
+                method: 'GET',
+                url: this.api('/promotionservice/v1/promotion/findAll'),
+                params: {
+                    pageNumber: 0,
+                    pageSize: 20
+                }
+            });
+
+            return this.all(request);
         }
 
         /**
@@ -185,12 +201,14 @@ namespace app.core {
          * @return {ng.IPromise<models.IPromotionDetails>}    [description]
          */
         getPromotion(id: string): ng.IPromise<models.IPromotionDetails> {
-            return this.request({
-                    method: 'GET',
-                    url: this.api(`/promotionservice/v1/promotion/${id}`)
-                })
-                .then((response: any) => {
-                    var data = response.data.responseObject;
+            var request = this.request({
+                method: 'GET',
+                url: this.api(`/promotionservice/v1/promotion/${id}`)
+            });
+
+            return request
+                .then(getResponseObject)
+                .then((data: any) => {
                     data.products = data.products.content;
                     return data;
                 });
@@ -208,13 +226,12 @@ namespace app.core {
         }
 
         getProduct(id: string) {
-            return this.request({
-                    method: 'GET',
-                    url: this.api(`/productservice/v1/products/${id}/productDetails`)
-                })
-                .then((response) => {
-                    return response.data.responseObject;
-                });
+            var request = this.request({
+                method: 'GET',
+                url: this.api(`/productservice/v1/products/${id}/productDetails`)
+            });
+
+            return request.then(getResponseObject);
         }
 
         /**
@@ -222,10 +239,16 @@ namespace app.core {
          * @param {string} productId  [description]
          */
         getReviews(productId: string): ng.IPromise<models.IReview[]> {
-            return this.requestAll({
-                    method: 'GET',
-                    url: this.api(`/reviewservice/v1/review/findAll/product/${productId}`)
-                });
+            var request = this.request({
+                method: 'GET',
+                url: this.api(`/reviewservice/v1/review/findAll/product/${productId}`),
+                params: {
+                    pageNumber: 0,
+                    pageSize: 20
+                }
+            });
+
+            return this.all(request);
         }
 
         /**
@@ -233,12 +256,16 @@ namespace app.core {
          * @param {string} productId  [description]
          */
         getRecommendations(productId: string): ng.IPromise<models.IProduct[]> {
-            const config =  {
+            var request =  this.request({
                 method: 'GET',
-                url: this.api(`/recommendationservice/v1/recommendation/product/${productId}`)
-            };
+                url: this.api(`/recommendationservice/v1/recommendation/product/${productId}`),
+                params: {
+                    pageNumber: 0,
+                    pageSize: 20
+                }
+            });
 
-            return this.requestAll(config, (x: any) => x.responseObject.products);
+            return this.all(request, (x: any) => x.responseObject.products);
         }
     }
 

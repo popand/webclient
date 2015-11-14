@@ -34,26 +34,26 @@ describe('DataService', () => {
         $httpBackend.verifyNoOutstandingRequest();
     });
 
-    describe('authenticate()', () => {
+    describe('ensureAccessToken()', () => {
         it('should store the token in local storage', () => {
             let response = $httpBackend.when('POST', tokenUrl);
-            let promise = dataService.authenticate();
+            let promise = dataService.ensureAccessToken();
             const token = mocks.token['access_token'];
 
-            expect(localStorageService.get('auth.token')).to.equal(null);
+            expect(localStorageService.get('libertas.access_token')).to.be.an('object');
             expect(promise).eventually.to.equal(token);
             expect(promise).eventually.to.be.a('string');
 
             response.respond(200, mocks.token);
             $httpBackend.flush();
 
-            expect(localStorageService.get('auth.token')).to.equal(token);
+            expect(localStorageService.get('libertas.access_token')).to.equal(token);
         });
     });
 
     describe('request()', () => {
         it('should ask for an access token', () => {
-            var authenticate = sinon.spy(dataService, 'authenticate');
+            var ensureAccessToken = sinon.spy(dataService, 'ensureAccessToken');
 
             $httpBackend.expectPOST(tokenUrl).respond(200, mocks.token);
             $httpBackend.expectGET('/').respond(200, 'value');
@@ -66,26 +66,26 @@ describe('DataService', () => {
             );
 
             $httpBackend.flush();
-            authenticate.should.have.callCount(1);
+            ensureAccessToken.should.have.callCount(1);
 
         });
 
         it('should fail if there is no access token', () => {
-            var authenticate = sinon.spy(dataService, 'authenticate');
+            var ensureAccessToken = sinon.spy(dataService, 'ensureAccessToken');
 
             $httpBackend.expectPOST(tokenUrl).respond(200, '');
 
             dataService
-                .request({method: 'GET', url: '/'}, true)
+                .request({method: 'GET', url: '/'})
                 .should.be.rejectedWith('no token');
 
             $httpBackend.flush();
-            authenticate.should.have.callCount(1);
+            ensureAccessToken.should.have.callCount(1);
         });
 
         it('should ask for new token if the server returned not authorized', () => {
-            var authenticate = sinon.spy(dataService, 'authenticate');
-            localStorageService.set('auth.token', 'invalid_token');
+            var ensureAccessToken = sinon.spy(dataService, 'ensureAccessToken');
+            localStorageService.set('libertas.access_token', 'invalid_token');
 
             $httpBackend.expectGET('/').respond(401, 'not authorized');
             $httpBackend.expectPOST(tokenUrl).respond(200, mocks.token);
@@ -100,12 +100,12 @@ describe('DataService', () => {
             );
 
             $httpBackend.flush();
-            authenticate.should.have.callCount(2);
+            ensureAccessToken.should.have.callCount(2);
         });
 
         it('should ask for new token only once', () => {
-            var authenticate = sinon.spy(dataService, 'authenticate');
-            localStorageService.set('auth.token', 'invalid_token');
+            var ensureAccessToken = sinon.spy(dataService, 'ensureAccessToken');
+            localStorageService.set('libertas.access_token', 'invalid_token');
 
             $httpBackend.expectGET('/').respond(401, 'not authorized');
             $httpBackend.expectPOST(tokenUrl).respond(200, mocks.token);
@@ -121,7 +121,7 @@ describe('DataService', () => {
             );
 
             $httpBackend.flush();
-            authenticate.should.have.callCount(2);
+            ensureAccessToken.should.have.callCount(2);
         });
     });
 });
