@@ -209,8 +209,12 @@ namespace app.core {
             return request
                 .then(getResponseObject)
                 .then((data: any) => {
-                    data.products = data.products.content;
-                    return data;
+                    var products = _.map(data.products.content, x => x.productId);
+                    return this.getProductsByIds(products)
+                        .then(products => {
+                            data.products = products;
+                            return data;
+                        });
                 });
         }
 
@@ -225,7 +229,8 @@ namespace app.core {
                 });
         }
 
-        getProduct(id: string) {
+        getProduct(product: models.IProduct) {
+            var id = product.productId;
             var request = this.request({
                 method: 'GET',
                 url: this.api(`/productservice/v1/products/${id}/productDetails`)
@@ -233,6 +238,21 @@ namespace app.core {
 
             return request.then(getResponseObject);
         }
+
+        getProductsByIds(ids) {
+            var request = this.request({
+                method: 'GET',
+                url: this.api('/productservice/v1/products/retrieveAllProductDetailsByIds'),
+                params: {
+                    productIds: ids,
+                    pageSize: 40,
+                    pageNumber: 0
+                }
+            });
+
+            return this.all(request);
+        }
+
 
         /**
          * List of comments for the selected movie.

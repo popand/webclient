@@ -59,6 +59,7 @@ namespace app.main {
                 for (let product of products) {
                     product.image = _.find(product.imageList, {imageType});
                 }
+
                 return products;
             }
         }
