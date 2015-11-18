@@ -8,6 +8,7 @@ namespace app {
         'app.auth',
         'app.main',
         'app.movies',
+        'app.search',
         'app.layout'
     ]);
 }

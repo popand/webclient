@@ -2,7 +2,9 @@
 
     <div class="container">
 
-        <span class="custom-label big-label">{{ ctrl.label }}</span>
+        <span ng-show="ctrl.label" class="custom-label big-label" ng-bind-html="ctrl.label"></span>
+
+        <ng-transclude></ng-transclude>
 
         <div class="latest-video-wrapper">
 

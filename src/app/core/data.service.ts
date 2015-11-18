@@ -254,6 +254,28 @@ namespace app.core {
             return this.all(request);
         }
 
+        searchProducts(query: string) {
+            // TODO: search returns empty data
+
+            if (!query) {
+                return this.$q.when([]);
+            }
+
+            var request = this.request({
+                method: 'GET',
+                url: this.api('/productservice/v1/products/retrieveAllProductDetailsByTags'),
+                // url: this.api('/productservice/v1/products/search'),
+                params: {
+                    // query: query,
+                    tags: [query],
+                    pageSize: 40,
+                    pageNumber: 0
+                }
+            });
+
+            return this.all(request);
+        }
+
 
         /**
          * List of comments for the selected movie.

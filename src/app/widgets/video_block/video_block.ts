@@ -4,7 +4,7 @@ namespace app.widget {
 
     class VideoBlockDirective implements ng.IDirective {
         scope = {};
-        transclude = false;
+        transclude = true;
         controller = function() {};
         controllerAs = 'ctrl';
         bindToController = {

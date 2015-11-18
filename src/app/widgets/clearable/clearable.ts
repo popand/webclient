@@ -3,6 +3,7 @@ namespace app.widget {
 
     class ClearableDirective implements ng.IDirective {
         link = function(scope: ng.IScope, element: any) {
+            element.toggleClass('clearable', true);
             element.clearSearch();
         };
     }

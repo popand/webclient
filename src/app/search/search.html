@@ -1,0 +1,24 @@
+
+<video-block
+    id="latest-video-block"
+    label='{{ ctrl.label }}'
+    videos="ctrl.results"
+>
+    <div class="search-holder">
+        <form novalidate name="searchForm" ng-submit="ctrl.search(searchForm)" class="form-search">
+            <div class="form-group field-icon">
+                <div class="row">
+                    <div class="col-md-4 col-sm-5 push-down">
+                        <input type="text" class="form-control" clearable placeholder="Search" ng-model="ctrl.query">
+                    </div><!-- col -->
+                    <div class="col-sm-5">
+                        <button type="submit" class="custom-btn red-btn">Search Again</button>
+                    </div><!-- col -->
+                </div><!-- row -->
+            </div><!-- form-group -->
+        </form><!-- search-form -->
+    </div><!-- search-holder -->
+
+</video-block>
+
+</section><!-- latest-video-block -->

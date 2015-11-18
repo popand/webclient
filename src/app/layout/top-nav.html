@@ -29,10 +29,10 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="navbar-form header-form" ng-class="ctrl.$state.current.registration? 'navbar-right' : 'navbar-left'">
+                <form ng-submit="ctrl.$state.go('search', {query: ctrl.query})" name="searchForm" class="navbar-form header-form" ng-class="ctrl.$state.current.registration? 'navbar-right' : 'navbar-left'">
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Search">
-                      <button type="submit"><i class="icon-surf-search"></i></button>
+                        <input type="text" name="query" class="form-control" placeholder="Search" ng-model="ctrl.query">
+                        <button type="submit"><i class="icon-surf-search"></i></button>
                     </div><!-- form-group -->
                 </form><!-- header-form -->
 
