@@ -111,4 +111,20 @@ namespace models {
         productId: string;
         tenantId: string;
     }
+
+    export interface ICustomer {
+        password: string; // , optional),
+        addressLine1?: string; // , optional),
+        addressLine2?: string; // , optional),
+        city?: string; // , optional),
+        provinceState?: string; // , optional),
+        country?: string; // , optional),
+        zipPostal?: string; // , optional),
+        homeNumber?: string; // , optional),
+        workNumber?: string; // , optional),
+        mobileNumber?: string; // , optional),
+        firstName?: string; // , optional),
+        lastName?: string; // , optional),
+        email: string; // , optional)
+    }
 }

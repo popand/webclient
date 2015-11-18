@@ -16,14 +16,6 @@ namespace app.layout {
 
         constructor(private $state: ng.ui.IStateService) {
         }
-
-        get inner() {
-            const state = this.$state.current.name;
-            const inner = [
-                'movies.detail'
-            ];
-            return inner.indexOf(state) !== -1;
-        }
     }
 
     angular.module('app.layout')

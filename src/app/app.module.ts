@@ -5,6 +5,7 @@ namespace app {
         'app.core',
         'app.widgets',
 
+        'app.auth',
         'app.main',
         'app.movies',
         'app.layout'

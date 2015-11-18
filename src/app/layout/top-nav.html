@@ -29,20 +29,14 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="navbar-form header-form navbar-left">
+                <form class="navbar-form header-form" ng-class="ctrl.$state.current.registration? 'navbar-right' : 'navbar-left'">
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Search">
                       <button type="submit"><i class="icon-surf-search"></i></button>
                     </div><!-- form-group -->
                 </form><!-- header-form -->
-                <ul class="navbar-nav navbar-right">
-                    <li class="dropdown user-name-holder">
-                        <a href="#" data-toggle="dropdown">Hello, <span class="user-name">Anthony Stevens <span class="caret"></span></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><span class="pull-left">Log Out</span> <i class="icon-surf-logout pull-right"></i></a></li>
-                        </ul><!-- dropdown-menu -->
-                    </li><!-- dropdown -->
-                </ul>
+
+                <user-info ng-if="!ctrl.$state.current.registration"></user-info>
             </div><!-- /.navbar-collapse -->
 
         </div><!-- /.container -->

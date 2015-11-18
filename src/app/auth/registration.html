@@ -1,0 +1,161 @@
+<div class="divider"></div>
+
+<section>
+
+    <div class="container">
+
+        <span class="custom-label big-label">Registration</span>
+
+        <div class="row">
+            <div class="col-md-8 col-sm-8">
+
+                <a href="#" class="custom-btn fb-btn icon-left"><i class="icon-surf-facebook-squared"></i> Subscribe with Facebook</a>
+
+                <hr>
+
+                <form ng-submit="ctrl.submit(registration)" name="registration" novalidate>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 push-down">
+                                <input type="text" ng-model="ctrl.user.firstName" class="form-control" placeholder="Name">
+                            </div><!-- col -->
+
+                            <div class="col-sm-6">
+                                <input type="text" ng-model="ctrl.user.lastName" class="form-control" placeholder="Surname">
+                            </div><!-- col -->
+                        </div><!-- row -->
+                    </div><!-- form-group -->
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 push-down" show-errors="skipFormGroupCheck">
+                                <input type="email" required name="email" ng-model="ctrl.user.email" class="form-control" placeholder="Email (will be your login)">
+                                <validation-messages ng-show="registration.email.$touched || registration.$submitted"></validation-messages>
+                            </div><!-- col -->
+                        </div><!-- row -->
+                    </div><!-- form-group -->
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 push-down">
+                                <select selectpicker data-width="100%"
+                                    ng-model="ctrl.user.country"
+                                >
+                                    <option data-hidden="true">Choose Country</option>
+                                    <option value="usa">USA</option>
+                                    <option value="ukraine">Ukraine</option>
+                                </select><!-- selectpicker -->
+                            </div><!-- col -->
+
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" placeholder="Province \ State"
+                                    ng-model="ctrl.user.provinceState"
+                                >
+                            </div><!-- col -->
+                        </div><!-- row -->
+                    </div><!-- form-group -->
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 push-down">
+                                <input type="text" class="form-control" placeholder="City"
+                                    ng-model="ctrl.user.city"
+                                >
+                            </div><!-- col -->
+
+                            <div class="col-md-3 col-sm-4">
+                                <input type="text" class="form-control" placeholder="Zip \ Postal Code"
+                                    ng-model="ctrl.user.zipPostal"
+                                >
+                            </div><!-- col -->
+                        </div><!-- row -->
+                    </div><!-- form-group -->
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 push-down">
+                                <input type="text" class="form-control" placeholder="Address Line 1"
+                                    ng-model="ctrl.user.addressLine1"
+                                >
+                            </div><!-- col -->
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Address Line 2"
+                                    ng-model="ctrl.user.addressLine2"
+                                >
+                            </div><!-- col -->
+                        </div><!-- row -->
+                    </div><!-- form-group -->
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 push-down">
+                                <input type="text" class="form-control" placeholder="Home Number"
+                                    ng-model="ctrl.user.homeNumber"
+                                >
+                            </div><!-- col -->
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Work Number"
+                                    ng-model="ctrl.user.workNumber"
+                                >
+                            </div><!-- col -->
+                        </div><!-- row -->
+                    </div><!-- form-group -->
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 push-down">
+                                <input type="text" class="form-control" placeholder="Mobile Number"
+                                    ng-model="ctrl.user.mobileNumber"
+                                >
+                            </div><!-- col -->
+                        </div><!-- row -->
+                    </div><!-- form-group -->
+
+                    <div class="form-group" show-errors>
+                        <div class="row">
+                            <div class="col-sm-6 push-down">
+                                <input type="password" class="form-control" placeholder="Password" name="password"
+                                    ng-model="ctrl.user.password"
+                                    required
+                                    match="ctrl.passwordConfirm"
+                                >
+
+                                <validation-messages ng-show="registration.password.$touched || registration.$submitted">
+                                </validation-messages>
+                            </div><!-- col -->
+
+                            <div class="col-md-6">
+                                <input type="password" ng-model="ctrl.passwordConfirm" class="form-control" placeholder="Confirm Password" name="passwordConfirm">
+
+                                <div class="help-block"
+                                    ng-messages="registration.password.$error"
+                                    ng-show="registration.passwordConfirm.$touched || registration.$submitted"
+                                >
+                                    <p ng-message="match">Passwords do not match</p>
+                                </div>
+
+                            </div><!-- col -->
+
+                        </div><!-- row -->
+                    </div><!-- form-group -->
+
+                    <div class="form-group has-error">
+                        <div class="help-block">
+                            <p ng-repeat="error in ctrl.serverErrors">{{error}}</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="custom-btn red-btn">Create Account</button>
+                    <div class="divider-horizontal"></div>
+                    <span class="form-control-static">By clicking Create Account, you agree to <a href="#" class="red">Terms of Use</a> and <a href="#" class="red">Privacy Policy</a>.</span>
+
+                </form>
+
+            </div><!-- col -->
+        </div><!-- row -->
+
+    </div><!-- container -->
+
+</section><!-- grey-sectionk -->
