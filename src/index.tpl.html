@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <link rel="icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-    <title ng-bind="title">Shuvittv</title>
+    <title ng-bind="title">Surf</title>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     <!-- build:css styles/vendor.css-->
     <!-- bower:css -->
@@ -24,7 +24,7 @@
     <!-- endinject -->
     <!-- endbuild -->
 </head>
-<body>
+<body ng-class="{'grey-section': $state.registration}">
     <div>
         <div ng-include="'app/layout/layout.html'"></div>
     </div>

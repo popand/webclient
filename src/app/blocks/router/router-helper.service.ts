@@ -65,6 +65,7 @@ namespace blocks.router {
 
                     var title = (toState.title || '');
                     this.$rootScope.title = title; // data bind to <title>
+                    this.$rootScope.$state = toState;
                 });
         }
     }

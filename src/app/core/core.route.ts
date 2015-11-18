@@ -46,7 +46,7 @@ namespace app.core {
                 config: {
                     url: '/404',
                     templateUrl: 'app/core/404.html',
-                    title: 'Shuvit TV :: Page not found'
+                    title: 'Surf: Page not found'
                 }
             }
         ];
