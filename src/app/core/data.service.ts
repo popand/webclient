@@ -209,8 +209,9 @@ namespace app.core {
             return request
                 .then(getResponseObject)
                 .then((data: any) => {
-                    var products = _.map(data.products.content, x => x.productId);
-                    return this.getProductsByIds(products)
+                    var products: models.IProduct[] = data.products.content;
+                    var productIds = _.map(products, x => x.productId);
+                    return this.getProductsByIds(productIds)
                         .then(products => {
                             data.products = products;
                             return data;
@@ -239,7 +240,7 @@ namespace app.core {
             return request.then(getResponseObject);
         }
 
-        getProductsByIds(ids) {
+        getProductsByIds(ids: string[]) {
             var request = this.request({
                 method: 'GET',
                 url: this.api('/productservice/v1/products/retrieveAllProductDetailsByIds'),

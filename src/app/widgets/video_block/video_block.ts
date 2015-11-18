@@ -19,7 +19,7 @@ namespace app.widget {
         return _.memoize(chunkByWeight, chunkByWeightResolver);
 
         function chunkByWeight(items: models.IProduct[], chunkWeight = 3) {
-            items = items.filter(x => x.image);
+            items = items.filter(x => !!x.image);
 
             if (_.isEmpty(items)) {
                 return [];
