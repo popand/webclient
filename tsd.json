@@ -6,10 +6,10 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "jquery/jquery.d.ts": {
-      "commit": "43f4fc592a99e2f0f8f4ee3ae26a3a8e2f5ca3ae"
+      "commit": "c560ba6f0f55ce6f50e9d06e37b5bc0e2b9117b0"
     },
     "angularjs/angular.d.ts": {
-      "commit": "43f4fc592a99e2f0f8f4ee3ae26a3a8e2f5ca3ae"
+      "commit": "c560ba6f0f55ce6f50e9d06e37b5bc0e2b9117b0"
     },
     "chai/chai.d.ts": {
       "commit": "381479952e9725f6e14e7974f082b5e11585bf0b"
@@ -97,6 +97,12 @@
     },
     "mime/mime.d.ts": {
       "commit": "44cbde48eecd1918ed54b3be49a9752688b6c65a"
+    },
+    "angular-http-auth/angular-http-auth.d.ts": {
+      "commit": "c560ba6f0f55ce6f50e9d06e37b5bc0e2b9117b0"
+    },
+    "angular-ui-bootstrap/angular-ui-bootstrap.d.ts": {
+      "commit": "c560ba6f0f55ce6f50e9d06e37b5bc0e2b9117b0"
     }
   }
 }
