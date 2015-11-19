@@ -7,7 +7,7 @@
         <div class="comment-header-box">
             <div class="row">
                 <div class="col-xs-6">
-                    <p><span>4</span><i class="icon-surf-chat"></i></p>
+                    <p><span>{{ctrl.comments.length}}</span><i class="icon-surf-chat"></i></p>
                 </div><!-- col -->
 
                 <div class="col-xs-6 text-right">
@@ -17,7 +17,7 @@
         </div><!-- comment-header-box -->
 
 
-        <div ng-hide="ctrl.collapsed" class="comment-body-box">
+        <div ng-hide="ctrl.collapsed" class="comment-body-box" ng-show="ctrl.comments.length">
 
             <div
                 class="media main-comment"

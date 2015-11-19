@@ -158,7 +158,7 @@ namespace app.core {
 
                     var pagedData = iteratee(response);
                     if (!pagedData) {
-                        return data;
+                        return this.$q.reject(response);
                     }
 
                     content = content.concat(pagedData.content || []);
@@ -209,7 +209,12 @@ namespace app.core {
             return request
                 .then(getResponseObject)
                 .then((data: any) => {
-                    var products: models.IProduct[] = data.products.content;
+                    var products: models.IProduct[] = _.get(data, 'products.content', []);
+                    if (_.isEmpty(products)) {
+                        data.products = [];
+                        return data;
+                    }
+
                     var productIds = _.map(products, x => x.productId);
                     return this.getProductsByIds(productIds)
                         .then(products => {
@@ -230,8 +235,7 @@ namespace app.core {
                 });
         }
 
-        getProduct(product: models.IProduct) {
-            var id = product.productId;
+        getProduct(id: string) {
             var request = this.request({
                 method: 'GET',
                 url: this.api(`/productservice/v1/products/${id}/productDetails`)
@@ -308,7 +312,7 @@ namespace app.core {
                 }
             });
 
-            return this.all(request, (x: any) => x.responseObject.products);
+            return this.all(request, (response: any) => response.data.responseObject.products);
         }
     }
 

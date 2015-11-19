@@ -100,12 +100,14 @@ namespace app.auth {
                 templateUrl: 'app/auth/login_modal/login_modal.html'
             });
 
-            instance.result.then(null, (reason) => {
+            return instance.result.then(null, (reason) => {
                 this.authService.loginCancelled();
 
                 if (reason === 'registration') {
                     this.$state.go('registration');
                 }
+
+                return reason;
             });
         }
 

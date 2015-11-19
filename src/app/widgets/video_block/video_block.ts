@@ -19,7 +19,7 @@ namespace app.widget {
         return _.memoize(chunkByWeight, chunkByWeightResolver);
 
         function chunkByWeight(items: models.IProduct[], chunkWeight = 3) {
-            items = items.filter(x => !!x.image);
+            items = _.isArray(items) && items.filter(x => !!x.image);
 
             if (_.isEmpty(items)) {
                 return [];
@@ -71,7 +71,11 @@ namespace app.widget {
         }
 
         function chunkByWeightResolver(items: models.IProduct[], chunkWeight = 3) {
-            return _.isEmpty(items) ? '' : items.reduce((sum, x) => sum + x.id, chunkWeight.toString());
+            if (_.isEmpty(items) || _.isArray(items) === false) {
+                return '';
+            }
+
+            return items.reduce((sum, x) => sum + x.id, chunkWeight.toString());
         }
     }
 

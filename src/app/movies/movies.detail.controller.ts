@@ -4,36 +4,28 @@ namespace app.movies {
     class MoviesDetailController {
         static $inject = [
             '$state',
-            '$stateParams',
             '$rootScope',
+            '$uibModal',
             'dataService',
-            'logger'
+            'identityService',
+            'logger',
+            'video'
         ];
 
-        video = {title: '', longDescription: ''};
         comments: models.IReview[];
         relatedVideos: models.IProduct[];
 
         constructor(
             $state: ng.ui.IStateService,
-            $stateParams: any,
             $rootScope: any,
+            private $uibModal: ng.ui.bootstrap.IModalService,
             dataService: app.core.DataService,
-            logger: blocks.logger.Logger
+            private identity: app.auth.IdentityService,
+            private logger: blocks.logger.Logger,
+            private video: models.IProduct
         ) {
-            var id = $stateParams.id;
-
-            dataService.getProduct(id)
-                .then(
-                    (product: models.IProduct) => {
-                        this.video = product;
-                        $rootScope.title = product.title;
-                    }
-                )
-                .catch(response => {
-                    logger.error('Failed to fetch a product', response);
-                    $state.go('404');
-                });
+            var id = video.productId;
+            $rootScope.title = video.title;
 
             dataService.getRecommendations(id)
                 .then(products => {
@@ -48,6 +40,40 @@ namespace app.movies {
                 .then(reviews => {
                     this.comments = reviews;
                 });
+        }
+
+        get canWatch() {
+            return this.video.canWatchNow === true;
+        }
+
+        get canRent() {
+            return !this.canWatch && this.identity.isLoggedIn && this.price;
+        }
+
+        get price() {
+            return _.get(this.video, 'purchaseOptionList[0].price', '');
+        }
+
+        rent() {
+            var doRent = () => {
+                if (!this.identity.isLoggedIn) {
+                    this.logger.warning('[doRent] not logged in');
+                    return;
+                }
+
+                this.$uibModal.open({
+                    controllerAs: 'ctrl',
+                    controller: 'BraintreeModalController',
+                    templateUrl: 'app/movies/braintree_modal/braintree_modal.html'
+                });
+            };
+
+            if (this.identity.isLoggedIn) {
+                doRent();
+                return;
+            }
+
+            this.identity.loginModal().then(doRent);
         }
     }
 

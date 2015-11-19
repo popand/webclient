@@ -24,14 +24,14 @@ namespace models {
     }
 
     export interface IMedia {
-      id: string;
-      mediaId: string;
-      componentId: string;
-      screenFormat: string;
-      aspectRatio: string;
-      mediaFormat: string;
-      targetDevice: string;
-      url?: string;
+        id: string;
+        mediaId: string;
+        componentId: string;
+        screenFormat: string;
+        aspectRatio: string;
+        mediaFormat: string;
+        targetDevice: string;
+        url?: string;
     }
 
     export interface IProduct {
@@ -41,6 +41,7 @@ namespace models {
         studio: string;
         subtitleList: string[];
         genres: string[];
+        canWatchNow: boolean;
         comingSoon: boolean;
         seoUrl: string;
         network: any;
@@ -89,17 +90,17 @@ namespace models {
     }
 
     export interface IPurchaseOption {
-      id: string;
-      creationDate: string;  // timestamp, date?
-      offerType: string; // enum
-      startDateTimestampMillis: string; // timestamp, number, date?
-      price: string; // float
-      description: string;
-      mediaList: IMedia[];
-      endDateTimestampMillis: string; // timestamp
-      entitlementDurationMillis: string; // number?
-      purchaseOptionId: string;
-      offerId: string;
+        id: string;
+        creationDate: string;  // timestamp, date?
+        offerType: string; // enum
+        startDateTimestampMillis: string; // timestamp, number, date?
+        price: string; // float
+        description: string;
+        mediaList: IMedia[];
+        endDateTimestampMillis: string; // timestamp
+        entitlementDurationMillis: string; // number?
+        purchaseOptionId: string;
+        offerId: string;
     }
 
     export interface IReview {

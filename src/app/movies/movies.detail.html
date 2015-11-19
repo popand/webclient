@@ -1,36 +1,25 @@
-<section id="video-box-block" class="black-section">
-
-    <div class="container">
-
-        <div class="iframe-box">
-
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe width="100%" class="embed-responsive-item" src="//www.youtube.com/embed/RnZvH6WaeXga" frameborder="0" allowfullscreen></iframe>
-
-            </div><!-- embed-responsive -->
-
-        </div><!-- iframe-box -->
-
-        <div class="video-caption-box">
-
+<section class="image-section section-no-padding-top">
+    <img src="images/public/big-slide-1.jpg" class="full-width" alt="">
+    <div class="carousel-caption carousel-caption-table">
+        <div class="container">
+            <a href="#" class="play-btn"><i class="icon-surf-play"></i></a>
             <div class="row">
-
-                <div class="col-md-10 col-sm-9 push-down">
-                    <h3 class="video-caption">{{ ctrl.video.title }}</h3>
-                    <h6>{{ ctrl.video.longDescription }}</h6>
+                <div class="col-lg-6 col-sm-8 push-sm-down">
+                    <span class="custom-label">{{ ::ctrl.video.title }}</span>
+                    <h2>Qualifying: The US Open of Surfing, part two</h2>
+                    <h3>{{ ::ctrl.video.longDescription }}</h3>
                 </div><!-- col -->
-
-                <div class="col-md-2 col-sm-3 mobile-text-center">
-                    <a href="#" class="custom-btn icon-right">Share<i class="icon-surf-share"></i></a>
+                <div class="col-lg-6 col-sm-4">
+                    <div class="btn-holder">
+                        <a href="#" class="custom-btn white-btn text-uppercase">preview</a>
+                        <a ng-if="::ctrl.canRent" href="" ng-click="ctrl.rent()" class="custom-btn red-btn text-uppercase">rent {{ ::ctrl.price | currency }}</a>
+                        <a ng-if="::ctrl.canWatch" ui-sref="movies.watch({id: ctrl.video.productId})" class="custom-btn red-btn text-uppercase">Watch Now</a>
+                    </div><!-- btn-holder -->
                 </div><!-- col -->
-
             </div><!-- row -->
-
-        </div><!-- video-caption-box -->
-
-    </div><!-- container -->
-
-</section><!-- video-box-block -->
+        </div><!-- container -->
+    </div><!-- carousel-caption -->
+</section>
 
 <video-block
     id="related-video-block"

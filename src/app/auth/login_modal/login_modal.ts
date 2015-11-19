@@ -39,7 +39,7 @@ namespace app.auth {
             return this.identity
                 .login(this.credentials, this.remember)
                 .then(
-                    () => this.$modalInstance.close(),
+                    () => this.$modalInstance.close('loggedIn'),
                     (rejection: any) => {
                         this.serverErrors = rejection.data.errors;
                     }

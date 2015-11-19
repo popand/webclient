@@ -25,7 +25,23 @@ namespace app.movies {
                     templateUrl: 'app/movies/movies.detail.html',
                     controller: 'MoviesDetailController',
                     controllerAs: 'ctrl',
-                    title: 'Surf: Movie'
+                    title: 'Surf: Movie',
+                    resolve: {
+                        video: resolveVideo
+                    }
+                }
+            },
+            {
+                state: 'movies.watch',
+                config: {
+                    url: '/:id/watch',
+                    templateUrl: 'app/movies/movies.watch.html',
+                    controller: 'MoviesWatchController',
+                    controllerAs: 'ctrl',
+                    title: 'Surf: Inner',
+                    resolve: {
+                        video: resolveVideo
+                    }
                 }
             }
         ];
@@ -33,5 +49,10 @@ namespace app.movies {
         states.forEach(function(state) {
             $stateProvider.state(state.state, state.config);
         });
+    }
+
+    resolveVideo.$inject = ['$stateParams', 'dataService'];
+    function resolveVideo($stateParams: any, libertas: app.core.DataService) {
+        return libertas.getProduct($stateParams.id);
     }
 }
