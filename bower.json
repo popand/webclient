@@ -6,7 +6,7 @@
     "jquery-clearsearch": "https://github.com/waslos/jquery-clearsearch.git#v1.0.3",
     "modernizr": "2.8.3",
     "holderjs": "~2.8.2",
-    "owlcarousel": "master",
+    "owlcarousel": "4460c16a26b1bba1309b672c8c7c53cb519aca98",
     "html5shiv": "~3.7.3",
     "respond": "~1.4.2",
     "bootstrap-sass": "bootstrap-sass-official#3.0.3-0",
