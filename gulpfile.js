@@ -74,7 +74,7 @@ gulp.task('styles', ['clean-styles'], function() {
     return gulp
         .src(config.sass.src)
         .pipe($.plumber()) // exit gracefully if something fails after this
-        .pipe($.sass().on('error', $.sass.logError))
+        .pipe($.sass({outputStyle: 'expanded'}).on('error', $.sass.logError))
         .pipe($.autoprefixer({browsers: ['last 2 version', '> 5%']}))
         .pipe(gulp.dest(config.sass.build));
 });

@@ -9,7 +9,6 @@
     "owlcarousel": "4460c16a26b1bba1309b672c8c7c53cb519aca98",
     "html5shiv": "~3.7.3",
     "respond": "~1.4.2",
-    "bootstrap-sass": "bootstrap-sass-official#3.0.3-0",
     "lodash": "~3.10.1",
     "moment": "~2.10.6",
     "angular": "~1.4.7",
@@ -52,7 +51,8 @@
     }
   },
   "devDependencies": {
-    "bourbon": "~4.2.5",
+    "bourbon": "4.2.6",
+    "sass-bootstrap": "3.0.2",
     "angular-mocks": "~1.4.7",
     "sinon": "~1.17.0"
   },
