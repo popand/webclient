@@ -16,12 +16,7 @@ namespace app.search {
             $stateParams: any,
             private results: models.IProduct[]
         ) {
-            // TODO: What image type? And don't like product.image here.
             // TODO: pagination
-            for (let product of this.results) {
-                product.image = _.find(product.imageList, {imageType: 'Medium'});
-            }
-
             this.query = $stateParams.query;
             this.label = this.getLabel(this.query);
         }

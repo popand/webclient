@@ -6,7 +6,6 @@ namespace app.movies {
             '$state',
             '$rootScope',
             'dataService',
-            'logger',
             'video'
         ];
 
@@ -17,25 +16,22 @@ namespace app.movies {
             $state: ng.ui.IStateService,
             $rootScope: any,
             dataService: app.core.DataService,
-            logger: blocks.logger.Logger,
-            private video: models.IProduct
+            private video: models.Product
         ) {
-            var id = this.video.productId;
             $rootScope.title = video.title;
 
-            dataService.getRecommendations(id)
-                .then(products => {
-                    for (let product of products) {
-                        product.image = _.find(product.imageList, {imageType: 'Medium'});
-                    }
+            var productId = this.video.productId;
 
+            dataService.getRecommendations(productId)
+                .then(products => {
                     this.relatedVideos = products;
                 });
 
-            dataService.getReviews(id)
+            dataService.getReviews(productId)
                 .then(reviews => {
                     this.comments = reviews;
                 });
+
         }
     }
 

@@ -34,7 +34,7 @@ namespace models {
         url?: string;
     }
 
-    export interface IProduct {
+    export abstract class IProduct {
         id: string;
         productId: string;
         name: string;
@@ -81,7 +81,34 @@ namespace models {
         tenantId: string;
         version: string;
 
-        image?: IImage;
+
+        // helpers
+        imageType = '';
+
+        get image() {
+            return this.getImage();
+        }
+
+        getImage(imageType?: string) {
+            imageType = imageType || this.imageType || 'Medium';
+            return _.find(this.imageList, {imageType});
+        }
+    }
+
+    export class Product extends IProduct {
+        images: {[index: string]: IImage} = {};
+
+        static fromJson(data: IProduct) {
+            var product = new Product();
+            _.extend(product, data);
+
+            _.map(product.imageList, x => {
+                product.images[x.imageType.toLowerCase()] = x;
+            });
+
+            return product;
+        }
+
     }
 
     export interface IPromotionDetails {

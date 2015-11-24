@@ -2,7 +2,7 @@
 
     <owl-carousel id="owl-big-carousel" owl-options="ctrl.carousel.big" class="owl-carousel">
         <div owl-carousel-item ng-repeat="item in ctrl.products.carousel">
-            <a ui-sref="movies.detail({id: item.productId})"><img ng-src="{{::item.image.imageURL}}" alt=""></a>
+            <a ui-sref="movies.detail({id: item.productId})"><img ng-src="{{::item.images.banner.imageURL}}" alt=""></a>
             <div class="carousel-caption">
                 <div class="container">
                     <div class="row">
@@ -32,7 +32,7 @@
         <owl-carousel id="owl-small-carousel" class="owl-carousel" owl-options="ctrl.carousel.small">
 
             <div owl-carousel-item ng-repeat="show in ctrl.products.shows">
-                <a ui-sref="movies.detail({id: show.productId})"><img ng-src="{{show.image.imageURL}}" alt=""></a>
+                <a ui-sref="movies.detail({id: show.productId})"><img ng-src="{{show.images.small.imageURL}}" alt=""></a>
             </div>
 
         </owl-carousel><!-- owl-big-carousel -->

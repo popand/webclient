@@ -75,7 +75,7 @@ namespace app.widget {
                 return '';
             }
 
-            return items.reduce((sum, x) => sum + x.id, chunkWeight.toString());
+            return _(items).pluck('imageId').concat(chunkWeight).join('_');
         }
     }
 

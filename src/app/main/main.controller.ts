@@ -36,18 +36,8 @@ namespace app.main {
                 }
             };
 
-            var tags = {
-                carousel: 'Banner',
-                shows: 'Small',
-                latest: 'Medium'
-            };
-
-            _.each(tags, (imageType, tag) => dataService.getProductsByTags([tag])
+            _.each(this.products, (val, tag) => dataService.getProductsByTags([tag])
                 .then(products => {
-                    for (let product of products) {
-                        product.image = _.find(product.imageList, {imageType});
-                    }
-
                     this.products[tag] = products;
                 }));
         }

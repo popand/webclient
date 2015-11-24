@@ -39,6 +39,14 @@ namespace app.core {
         return response.data.responseObject;
     }
 
+    function getResponseObjectContent(response: any) {
+        return response.data.responseObject.content;
+    }
+
+    function asProducts(products: models.IProduct[]) {
+        return _.map(products, models.Product.fromJson);
+    }
+
     export class DataService {
         static $inject = ['$http', '$q', 'url', 'localStorageService', 'logger'];
 
@@ -146,7 +154,7 @@ namespace app.core {
          * @param  {function} iteratee
          * @return {ng.IPromise<any>}
          */
-        all(promise: ng.IPromise<any>, iteratee = getResponseObject) {
+        all(promise: ng.IPromise<any>, iteratee = getResponseObjectContent) {
             var next = (promise: ng.IPromise<any>, content: any[]): ng.IPromise<any> => {
                 return promise.then((response: any) => {
                     var data = response.data;
@@ -161,8 +169,8 @@ namespace app.core {
                         return this.$q.reject(response);
                     }
 
-                    content = content.concat(pagedData.content || []);
-                    if (pagedData.last === false) {
+                    content = content.concat(pagedData || []);
+                    if (data.responseObject.last === false) {
                         var config = response.config;
                         config.params.pageNumber += 1;
                         return next(this.request(config), content);
@@ -241,7 +249,7 @@ namespace app.core {
                 url: this.api(`/productservice/v1/products/${id}/productDetails`)
             });
 
-            return request.then(getResponseObject);
+            return request.then(getResponseObject).then(models.Product.fromJson);
         }
 
         getProductsByIds(ids: string[]) {
@@ -255,7 +263,7 @@ namespace app.core {
                 }
             });
 
-            return this.all(request);
+            return this.all(request).then(asProducts);
         }
 
         getProductsByTags(tags: string[]) {
@@ -269,7 +277,7 @@ namespace app.core {
                 }
             });
 
-            return this.all(request);
+            return this.all(request).then(asProducts);
         }
 
         searchProducts(query: string) {
@@ -292,7 +300,7 @@ namespace app.core {
                 }
             });
 
-            return this.all(request);
+            return this.all(request).then(asProducts);
         }
 
 
@@ -317,7 +325,7 @@ namespace app.core {
          * List of movies recommended
          * @param {string} productId  [description]
          */
-        getRecommendations(productId: string): ng.IPromise<models.IProduct[]> {
+        getRecommendations(productId: string): ng.IPromise<models.Product[]> {
             var request =  this.request({
                 method: 'GET',
                 url: this.api(`/recommendationservice/v1/recommendation/product/${productId}`),
@@ -327,7 +335,9 @@ namespace app.core {
                 }
             });
 
-            return this.all(request, (response: any) => response.data.responseObject.products);
+            var ids = 'responseObject.recommendation.recommendationProductIds';
+            return this.all(request, (response: any) => _.get(response.data, ids, []))
+                .then(ids => _.isEmpty(ids) ? [] : this.getProductsByIds(ids));
         }
     }
 
