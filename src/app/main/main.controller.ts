@@ -5,11 +5,7 @@ namespace app.main {
         static $inject = ['$timeout', 'dataService'];
 
         carousel: {};
-        products: {
-            carousel: models.IProduct[];
-            shows: models.IProduct[];
-            latest: models.IProduct[];
-        };
+        products: any;
 
         constructor($timeout: ng.ITimeoutService, dataService: app.core.DataService) {
             this.products = {
@@ -40,28 +36,20 @@ namespace app.main {
                 }
             };
 
+            var tags = {
+                carousel: 'Banner',
+                shows: 'Small',
+                latest: 'Medium'
+            };
 
-            dataService.getPromotionsWithDetails()
-                .then(promotions => {
-                    this.products.carousel = filter(promotions, 'Carousel', 'Banner');
-                    this.products.shows = filter(promotions, 'Shows', 'Box');
-                    this.products.latest = filter(promotions, 'Latest', 'Medium');
-                });
+            _.each(tags, (imageType, tag) => dataService.getProductsByTags([tag])
+                .then(products => {
+                    for (let product of products) {
+                        product.image = _.find(product.imageList, {imageType});
+                    }
 
-
-            function filter(list: models.IPromotionDetails[], name: string, imageType: string): models.IProduct[] {
-                var products = _.chain(list)
-                    .filter(x => x.promotion.name === name)
-                    .pluck('products')
-                    .flatten()
-                    .value();
-
-                for (let product of products) {
-                    product.image = _.find(product.imageList, {imageType});
-                }
-
-                return products;
-            }
+                    this.products[tag] = products;
+                }));
         }
     }
 

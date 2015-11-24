@@ -258,20 +258,35 @@ namespace app.core {
             return this.all(request);
         }
 
-        searchProducts(query: string) {
-            // TODO: search returns empty data
+        getProductsByTags(tags: string[]) {
+            var request = this.request({
+                method: 'GET',
+                url: this.api('/productservice/v1/products/retrieveAllProductDetailsByTags'),
+                params: {
+                    tags: tags,
+                    pageSize: 50,
+                    pageNumber: 0
+                }
+            });
 
+            return this.all(request);
+        }
+
+        searchProducts(query: string) {
             if (!query) {
                 return this.$q.when([]);
             }
 
+            // TODO: search returns empty data
+            if (true) {
+                return this.getProductsByTags([query]);
+            }
+
             var request = this.request({
                 method: 'GET',
-                url: this.api('/productservice/v1/products/retrieveAllProductDetailsByTags'),
-                // url: this.api('/productservice/v1/products/search'),
+                url: this.api('/productservice/v1/products/search'),
                 params: {
-                    // query: query,
-                    tags: [query],
+                    query: query,
                     pageSize: 40,
                     pageNumber: 0
                 }
