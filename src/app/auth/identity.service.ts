@@ -12,6 +12,7 @@ namespace app.auth {
     export class IdentityService {
         static $inject = [
             '$rootScope',
+            '$q',
             '$state',
             '$uibModal',
             'authService',
@@ -24,6 +25,7 @@ namespace app.auth {
 
         constructor(
             $rootScope: any,
+            private $q: ng.IQService,
             private $state: ng.ui.IStateService,
             private $uibModal: ng.ui.bootstrap.IModalService,
             private authService: ng.httpAuth.IAuthService,
@@ -48,7 +50,10 @@ namespace app.auth {
                     this.save();
                 }
 
-                this.authService.loginConfirmed();
+                this.authService.loginConfirmed('success', (config: any) => {
+                    config.headers['UserAuthorization'] = user.userToken;
+                    return config;
+                });
             };
 
             var config = {
@@ -110,7 +115,7 @@ namespace app.auth {
                     this.$state.go('registration');
                 }
 
-                return reason;
+                return this.$q.reject(reason);
             });
         }
 
