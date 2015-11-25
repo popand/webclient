@@ -321,6 +321,23 @@ namespace app.core {
             return this.all(request);
         }
 
+        createReview(productId: string, comment: string): ng.IPromise<models.IReview> {
+            if (_.isEmpty(productId) || _.isEmpty(comment)) {
+                this.logger.warning('createReview: invalid args', arguments);
+                return;
+            }
+
+            var request = this.request({
+                method: 'POST',
+                url: this.api(`/reviewservice/v1/review/product/${productId}`),
+                data: {
+                    comment: comment
+                }
+            });
+
+            return request.then(getResponseObject);
+        }
+
         /**
          * List of movies recommended
          * @param {string} productId  [description]

@@ -9,7 +9,6 @@ namespace app.movies {
             'video'
         ];
 
-        comments: models.IReview[];
         relatedVideos: models.IProduct[];
 
         constructor(
@@ -26,12 +25,6 @@ namespace app.movies {
                 .then(products => {
                     this.relatedVideos = products;
                 });
-
-            dataService.getReviews(productId)
-                .then(reviews => {
-                    this.comments = reviews;
-                });
-
         }
     }
 

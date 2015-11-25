@@ -47,7 +47,7 @@
         </div><!-- comment-body-box -->
 
 
-        <form action="" id="leave-comment-form">
+        <form ng-submit="ctrl.onSubmit(commentForm)" name="commentForm" id="leave-comment-form" novalidate>
 
             <fieldset>
 
@@ -69,8 +69,9 @@
                     </div><!-- row -->
                 </div><!-- form-group -->
 
-                <div class="form-group">
-                    <textarea name="" id="" cols="" rows="" class="form-control" placeholder="Your message"></textarea>
+                <div class="form-group" show-errors>
+                    <textarea name="comment" required id="" ng-model="ctrl.comment" cols="" rows="" class="form-control" placeholder="Your message"></textarea>
+                    <validation-messages ng-show="ctrl.submitted"></validation-messages>
                 </div><!-- form-group -->
 
                 <button type="submit" class="custom-btn red-btn">Post comment</button>
