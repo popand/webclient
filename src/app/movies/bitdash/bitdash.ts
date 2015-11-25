@@ -53,7 +53,7 @@ namespace app.movies {
             video: '='
         };
         link = function(scope: any, element: ng.IAugmentedJQuery, attrs: any) {
-            var url = scope.ctrl.url; // 'app/movies/bitdash/vendor/bitdash.min.js';
+            var url = scope.ctrl.url;
             var id = attrs.id || 'bitdash-player';
 
             if (!attrs.id) {

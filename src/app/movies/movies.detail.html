@@ -5,9 +5,9 @@
             <a href="#" class="play-btn"><i class="icon-surf-play"></i></a>
             <div class="row">
                 <div class="col-lg-6 col-sm-8 push-sm-down">
-                    <span class="custom-label">{{ ::ctrl.video.title }}</span>
-                    <h2>Qualifying: The US Open of Surfing, part two</h2>
-                    <h3>{{ ::ctrl.video.longDescription }}</h3>
+                    <span ng-repeat="actor in ::ctrl.video.actors" class="custom-label">{{::actor}}</span>
+                    <h2>{{::ctrl.video.shortTitle}}</h2>
+                    <h3>{{::ctrl.video.shortDescription}}</h3>
                 </div><!-- col -->
                 <div class="col-lg-6 col-sm-4">
                     <div class="btn-holder">
