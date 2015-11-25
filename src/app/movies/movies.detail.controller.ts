@@ -8,6 +8,7 @@ namespace app.movies {
             '$uibModal',
             'dataService',
             'identityService',
+            'previewModal',
             'logger',
             'video'
         ];
@@ -21,6 +22,7 @@ namespace app.movies {
             private $uibModal: ng.ui.bootstrap.IModalService,
             dataService: app.core.DataService,
             private identity: app.auth.IdentityService,
+            private previewModal: PreviewModalService,
             private logger: blocks.logger.Logger,
             private video: models.Product
         ) {
@@ -39,7 +41,15 @@ namespace app.movies {
                 });
         }
 
-        onPurchaseOption(option) {
+        get preview() {
+            return _.first(this.video.previewList);
+        }
+
+        playPreview() {
+            this.previewModal.open(this.preview);
+        }
+
+        onPurchaseOption(option: models.IPurchaseOption) {
             var purchase = () => {
                 if (!this.identity.isLoggedIn) {
                     this.logger.warning('[onPurchaseOption] not logged in');

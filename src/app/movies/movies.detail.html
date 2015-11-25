@@ -11,7 +11,7 @@
                 </div><!-- col -->
                 <div class="col-lg-6 col-sm-4">
                     <div class="btn-holder">
-                        <a href="#" class="custom-btn white-btn text-uppercase">preview</a>
+                        <a ng-if="::ctrl.preview" href ng-click="ctrl.playPreview()" class="custom-btn white-btn text-uppercase">preview</a>
                         <a
                             ng-if="::!ctrl.video.canWatchNow"
                             href class="custom-btn red-btn text-uppercase"

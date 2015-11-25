@@ -97,6 +97,7 @@ namespace app.auth {
                 animation: true,
                 controller: 'LoginModalController',
                 controllerAs: 'ctrl',
+                windowClass: 'login-modal',
                 templateUrl: 'app/auth/login_modal/login_modal.html'
             });
 

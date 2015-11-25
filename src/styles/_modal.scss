@@ -35,7 +35,7 @@
     color: $black;
 }
 /* Login modal */
-#login-modal {
+.login-modal {
     .modal-header {
         padding-left: 20px;
         padding-right: 20px;
@@ -44,4 +44,38 @@
     .modal-body {
         padding-top: 5px;
     }
+}
+
+/* Preview modal */
+.preview-modal {
+    .modal-dialog {
+        width: 60%;
+
+        @include respond-to(tablets-large) {
+            width: 70%;
+        }
+
+        @include respond-to(tablets) {
+            width: 80%;
+        }
+
+        @include respond-to(tablets-small) {
+            width: 90%;
+        }
+    }
+
+    .modal-body {
+        background-color: $mine-shaft;
+        padding: 0;
+    }
+}
+
+/* See: https://github.com/twbs/bootstrap/issues/9855 */
+.modal {
+    overflow-y: auto;
+}
+
+.modal-open {
+    overflow: auto;
+    overflow-x: auto;
 }
