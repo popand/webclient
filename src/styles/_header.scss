@@ -53,6 +53,7 @@ header {
 				border: 1px solid $color-emperor;
 				margin-top: 8px;
 				box-shadow: 1px 1px 0px 1px rgba($black, .75);
+
 				>a {
 					color: $color-alto-boulder;
 					display: block;
@@ -68,11 +69,25 @@ header {
 					&:hover, &:focus {
 						color: $maroon-flush;
 					}
-					.caret {
-						margin-left: 10px;
-						border-top-color: $maroon-flush;
+
+					max-width: 350px;
+
+					@include respond-to(tablets-large) {
+						max-width: 200px;
 					}
+
+					display: inline-block;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					vertical-align: top;
 				}
+
+				.caret {
+					margin-left: 10px;
+					border-top-color: $maroon-flush;
+				}
+
 				.dropdown-menu {
 					right: -1px;
 				}

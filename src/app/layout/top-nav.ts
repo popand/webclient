@@ -13,8 +13,13 @@ namespace app.layout {
 
     class TopNavController {
         static $inject = ['$state'];
+        isNavbarCollapsed = true;
 
         constructor(private $state: ng.ui.IStateService) {
+        }
+
+        toggleNavBar() {
+            this.isNavbarCollapsed = !this.isNavbarCollapsed;
         }
     }
 
