@@ -3,6 +3,7 @@ namespace app.movies {
 
     angular
         .module('app.movies')
+        .constant('clientTokenPath', '/') // TODO: temporary
         .config(configureStates);
 
     configureStates.$inject = ['$stateProvider'];

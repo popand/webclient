@@ -39,22 +39,10 @@ namespace app.movies {
                 });
         }
 
-        get canWatch() {
-            return this.video.canWatchNow === true;
-        }
-
-        get canRent() {
-            return !this.canWatch && this.identity.isLoggedIn && this.price;
-        }
-
-        get price() {
-            return _.get(this.video, 'purchaseOptionList[0].price', '');
-        }
-
-        rent() {
-            var doRent = () => {
+        onPurchaseOption(option) {
+            var purchase = () => {
                 if (!this.identity.isLoggedIn) {
-                    this.logger.warning('[doRent] not logged in');
+                    this.logger.warning('[onPurchaseOption] not logged in');
                     return;
                 }
 
@@ -66,11 +54,11 @@ namespace app.movies {
             };
 
             if (this.identity.isLoggedIn) {
-                doRent();
+                purchase();
                 return;
             }
 
-            this.identity.loginModal().then(doRent);
+            this.identity.loginModal().then(purchase);
         }
     }
 

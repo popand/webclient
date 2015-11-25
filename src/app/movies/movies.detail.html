@@ -12,8 +12,15 @@
                 <div class="col-lg-6 col-sm-4">
                     <div class="btn-holder">
                         <a href="#" class="custom-btn white-btn text-uppercase">preview</a>
-                        <a ng-if="::ctrl.canRent" href="" ng-click="ctrl.rent()" class="custom-btn red-btn text-uppercase">rent {{ ::ctrl.price | currency }}</a>
-                        <a ng-if="::ctrl.canWatch" ui-sref="movies.watch({id: ctrl.video.productId})" class="custom-btn red-btn text-uppercase">Watch Now</a>
+                        <a
+                            ng-if="::!ctrl.video.canWatchNow"
+                            href class="custom-btn red-btn text-uppercase"
+                            ng-repeat="item in ctrl.video.purchaseOptionList"
+                            ng-click="ctrl.onPurchaseOption(item)"
+                        >
+                             {{ ::item.offerType }} {{ ::item.price | currency }}
+                        </a>
+                        <a ng-if="::ctrl.video.canWatchNow" ui-sref="movies.watch({id: ctrl.video.productId})" class="custom-btn red-btn text-uppercase">Watch Now</a>
                     </div><!-- btn-holder -->
                 </div><!-- col -->
             </div><!-- row -->
