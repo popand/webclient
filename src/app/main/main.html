@@ -2,18 +2,20 @@
 
     <owl-carousel id="owl-big-carousel" owl-options="ctrl.carousel.big" class="owl-carousel">
         <div owl-carousel-item ng-repeat="item in ctrl.products.carousel">
-            <a ui-sref="movies.detail({id: item.productId})"><img ng-src="{{::item.images.banner.imageURL}}" alt=""></a>
-            <div class="carousel-caption">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-8 col-sm-12">
-                            <span class="custom-label" ng-repeat="actor in item.actors">{{::actor}}</span>
-                            <h2>{{::item.shortTitle}}</h2>
-                            <h3>{{::item.shortDescription}}</h3>
-                        </div><!-- col -->
-                    </div><!-- row -->
-                </div><!-- container -->
-            </div><!-- carousel-caption -->
+            <a ui-sref="movies.detail({id: item.productId})">
+                <img ng-src="{{::item.images.banner.imageURL}}" alt="">
+                <div class="carousel-caption">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-8 col-sm-12">
+                                <span class="custom-label" ng-repeat="actor in item.actors">{{::actor}}</span>
+                                <h2>{{::item.shortTitle}}</h2>
+                                <h3>{{::item.shortDescription}}</h3>
+                            </div><!-- col -->
+                        </div><!-- row -->
+                    </div><!-- container -->
+                </div><!-- carousel-caption -->
+            </a>
         </div>
     </owl-carousel><!-- owl-big-carousel -->
 
