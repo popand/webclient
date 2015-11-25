@@ -98,7 +98,7 @@ module.exports = function() {
 
         fonts: {
             src: [
-                bower.directory + 'bootstrap-sass-official/assets/fonts/**/*.*',
+                bower.directory + 'sass-bootstrap/fonts/*.*',
                 bower.directory + 'font-awesome/fonts/**/*.*',
                 src + 'fonts/*.*'
             ],
@@ -112,7 +112,7 @@ module.exports = function() {
 
         serve: {
             dev: [
-                bower.directory + 'bootstrap-sass-official/assets/',
+                bower.directory + 'sass-bootstrap/dist/',
                 bower.directory + 'font-awesome/',
                 root,
                 src
