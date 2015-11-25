@@ -96,7 +96,7 @@ header {
 	}
 	.dropdown {
 		a {
-			color: $maroon-flush;
+			color: $color-stack;
 			&:hover, &:focus {
 				color: lighten($maroon-flush, 5%);
 			}
@@ -114,9 +114,28 @@ header {
 			}
 		}
 		ul.dropdown-menu {
+			max-width: 300px;
+
 			li {
 				margin-right: 0;
 			}
+
+			li.user-name {
+				color: $color-stack;
+				padding-right: 10px;
+				padding-left: 10px;
+				max-width: 100%;
+				display: inline-block;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				vertical-align: top;
+			}
+
+			li.divider {
+				background-color: $color-emperor;
+			}
+
 			a {
 				padding: 6px 12px;
 				line-height: 100%;
