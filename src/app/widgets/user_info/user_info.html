@@ -1,8 +1,9 @@
 <ul class="navbar-nav navbar-right">
-    <li ng-if="ctrl.identity.isLoggedIn" class="dropdown user-name-holder">
-        <a href="" data-toggle="dropdown">Hello, <span class="user-name">{{ctrl.identity.username}} <span class="caret"></span></span></a>
-        <ul class="dropdown-menu">
-            <li><a href="" ng-click="ctrl.identity.loginModal()"><span class="pull-left">Log Out</span> <i class="icon-surf-logout pull-right"></i></a></li>
+    <li ng-if="ctrl.identity.isLoggedIn" uib-dropdown class="user-name-holder" on-toggle="toggled(open)">
+        <a href id="user-dropdown" uib-dropdown-toggle>Hello, <span class="user-name">{{ctrl.identity.username}} <span class="caret"></span></span>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="user-dropdown">
+            <li><a href ng-click="ctrl.identity.loginModal()"><span class="pull-left">Log Out</span> <i class="icon-surf-logout pull-right"></i></a></li>
         </ul><!-- dropdown-menu -->
     </li><!-- dropdown -->
 

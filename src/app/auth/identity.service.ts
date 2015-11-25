@@ -62,8 +62,10 @@ namespace app.auth {
 
         public logout() {
             if (this.storage.get(STORAGE_USER_TOKEN_KEY)) {
-                this.storage.remove(STORAGE_USER_TOKEN_KEY);
-                this.libertas.request({ method: 'POST', url: this.url('/logout')} );
+                // The service needs user token, so delete it only when we finally done with the request
+                this.libertas
+                    .request({ method: 'POST', url: this.url('/logout')} )
+                    .finally(() => this.storage.remove(STORAGE_USER_TOKEN_KEY));
             }
 
             this.username = '';
