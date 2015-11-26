@@ -34,6 +34,10 @@ namespace models {
         url?: string;
     }
 
+    export interface IDate {
+        millis: number;
+    }
+
     export abstract class IProduct {
         id: string;
         productId: string;
@@ -80,6 +84,7 @@ namespace models {
         directors: string[];
         tenantId: string;
         version: string;
+        createdDate: IDate;
 
 
         // helpers

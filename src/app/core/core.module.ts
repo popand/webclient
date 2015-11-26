@@ -6,6 +6,7 @@ namespace app.core {
             'ngAnimate',
             'ngSanitize',
             'ngHolder',
+            'angularMoment',
 
             // 'blocks.exception',
             'blocks.logger',

@@ -3,6 +3,5 @@ namespace app.core {
 
     angular
         .module('app.core')
-        .constant('moment', moment)
         .constant('_', _);
 }

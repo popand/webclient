@@ -17,8 +17,8 @@
                             <img ng-src="{{item.image.imageURL}}" alt="">
                             <div class="video-overlay">
                                 <div class="top-box">
-                                    <p><span class="custom-label transparent-label">4 Days Ago</span></p>
-                                    <p><span class="custom-label transparent-label">Episode</span></p>
+                                    <p><span class="custom-label transparent-label"><span class="text-capitalize" am-time-ago="::item.createdDate.millis"></span></span></p>
+                                    <p><span class="custom-label transparent-label">{{::item.productType}}</span></p>
                                 </div><!-- top-box -->
                                 <a ui-sref="movies.detail({id: item.productId})" class="play-btn"><i class="icon-surf-play"></i></a>
                                 <div class="bottom-box" ng-class="{'half-width': item.weight === 2}">
