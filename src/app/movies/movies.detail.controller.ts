@@ -3,26 +3,22 @@ namespace app.movies {
 
     class MoviesDetailController {
         static $inject = [
-            '$state',
             '$rootScope',
-            '$uibModal',
             'dataService',
             'identityService',
+            'braintreeModal',
             'previewModal',
-            'logger',
             'video'
         ];
 
         relatedVideos: models.IProduct[];
 
         constructor(
-            $state: ng.ui.IStateService,
             $rootScope: any,
-            private $uibModal: ng.ui.bootstrap.IModalService,
             dataService: app.core.DataService,
             private identity: app.auth.IdentityService,
+            private braintreeModal: BraintreeModalService,
             private previewModal: PreviewModalService,
-            private logger: blocks.logger.Logger,
             private video: models.Product
         ) {
             $rootScope.title = video.title;
@@ -51,11 +47,7 @@ namespace app.movies {
                 return;
             }
 
-            this.$uibModal.open({
-                controllerAs: 'ctrl',
-                controller: 'BraintreeModalController',
-                templateUrl: 'app/movies/braintree_modal/braintree_modal.html'
-            });
+            this.braintreeModal.open(this.video.productId, option.offerId);
         }
     }
 

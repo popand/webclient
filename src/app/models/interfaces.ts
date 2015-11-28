@@ -146,18 +146,38 @@ namespace models {
     }
 
     export interface ICustomer {
-        password: string; // , optional),
-        addressLine1?: string; // , optional),
-        addressLine2?: string; // , optional),
-        city?: string; // , optional),
-        provinceState?: string; // , optional),
-        country?: string; // , optional),
-        zipPostal?: string; // , optional),
-        homeNumber?: string; // , optional),
-        workNumber?: string; // , optional),
-        mobileNumber?: string; // , optional),
-        firstName?: string; // , optional),
-        lastName?: string; // , optional),
-        email: string; // , optional)
+        password: string;
+        addressLine1?: string;
+        addressLine2?: string;
+        city?: string;
+        provinceState?: string;
+        country?: string;
+        zipPostal?: string;
+        homeNumber?: string;
+        workNumber?: string;
+        mobileNumber?: string;
+        firstName?: string;
+        lastName?: string;
+        email: string;
+    }
+
+    export interface IOffer {
+        id?: string;
+        tenantId?: string;
+        deleteDate?: string;
+        name?: string;
+
+        regex?: string;
+        offerType?: string;
+        startDateTimestampMillis?: string;
+        endDateTimestampMillis?: string;
+        entitlementDurationMillis?: string;
+        price?: string;
+    }
+
+    export interface IPurchaseRequestData {
+        productId: string;
+        paymentNonce: string;
+        offer: IOffer;
     }
 }

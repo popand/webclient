@@ -356,6 +356,33 @@ namespace app.core {
             return this.all(request, (response: any) => _.get(response.data, ids, []))
                 .then(ids => _.isEmpty(ids) ? [] : this.getProductsByIds(ids));
         }
+
+        purchaseCheckout(data: models.IPurchaseRequestData) {
+            var request = this.request({
+                method: 'POST',
+                url: this.api('/purchaseservice/v1/purchase/checkout'),
+                data: data
+            });
+            return request;
+        }
+
+        getPurchaseClientToken(): ng.IPromise<string> {
+            var request = this.request({
+                method: 'GET',
+                url: this.api('/purchaseservice/v1/purchase/client_token')
+            });
+
+            return request.then(response => response.data);
+        }
+
+        getOffer(offerId: string): ng.IPromise<models.IOffer> {
+            var request = this.request({
+                method: 'GET',
+                url: this.api(`/offerservice/v1/offer/${offerId}`)
+            });
+
+            return request.then(getResponseObject);
+        }
     }
 
     angular
