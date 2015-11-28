@@ -27,12 +27,14 @@ namespace app.movies {
         ) {
             $rootScope.title = video.title;
 
-            var productId = this.video.productId;
-
-            dataService.getRecommendations(productId)
+            dataService.getRecommendations(this.video.productId)
                 .then(products => {
                     this.relatedVideos = products;
                 });
+        }
+
+        get canWatchNow() {
+            return this.video.canWatchNow && this.identity.isLoggedIn;
         }
 
         get preview() {
@@ -44,25 +46,16 @@ namespace app.movies {
         }
 
         onPurchaseOption(option: models.IPurchaseOption) {
-            var purchase = () => {
-                if (!this.identity.isLoggedIn) {
-                    this.logger.warning('[onPurchaseOption] not logged in');
-                    return;
-                }
-
-                this.$uibModal.open({
-                    controllerAs: 'ctrl',
-                    controller: 'BraintreeModalController',
-                    templateUrl: 'app/movies/braintree_modal/braintree_modal.html'
-                });
-            };
-
-            if (this.identity.isLoggedIn) {
-                purchase();
+            if (!this.identity.isLoggedIn) {
+                this.identity.loginModal();
                 return;
             }
 
-            this.identity.loginModal().then(purchase);
+            this.$uibModal.open({
+                controllerAs: 'ctrl',
+                controller: 'BraintreeModalController',
+                templateUrl: 'app/movies/braintree_modal/braintree_modal.html'
+            });
         }
     }
 
