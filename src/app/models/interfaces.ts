@@ -177,7 +177,8 @@ namespace models {
 
     export interface IPurchaseRequestData {
         productId: string;
+        offerId: string;
+        price: string;
         paymentNonce: string;
-        offer: IOffer;
     }
 }

@@ -47,7 +47,12 @@ namespace app.movies {
                 return;
             }
 
-            this.braintreeModal.open(this.video.productId, option.offerId);
+            this.braintreeModal.open({
+                productId: this.video.productId,
+                offerId: option.offerId,
+                price: option.price,
+                paymentNonce: null
+            });
         }
     }
 

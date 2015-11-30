@@ -9,8 +9,7 @@ namespace app.movies {
             '$scope',
             'dataService',
             'token',
-            'productId',
-            'offer',
+            'payload',
             'logger'
         ];
 
@@ -23,18 +22,13 @@ namespace app.movies {
             $scope: ng.IScope,
             libertas: app.core.DataService,
             token: string,
-            productId: string,
-            offer: models.IOffer,
+            payload: models.IPurchaseRequestData,
             logger: blocks.logger.Logger
         ) {
-            var onPaymentMethodReceived = (payload: any) => {
-                var data = {
-                    paymentNonce: payload.nonce,
-                    offer: offer,
-                    productId: productId
-                };
+            var onPaymentMethodReceived = (data: any) => {
+                payload.paymentNonce = data.nonce;
 
-                libertas.purchaseCheckout(data)
+                libertas.purchaseCheckout(payload)
                     .then(
                         response => this.close(response),
                         (reason: any) => {
@@ -80,7 +74,6 @@ namespace app.movies {
         }
     }
 
-
     export class BraintreeModalService {
         static $inject = ['$uibModal', 'dataService'];
 
@@ -90,15 +83,14 @@ namespace app.movies {
         ) {
         }
 
-        open(productId: string, offerId: string) {
+        open(payload: models.IPurchaseRequestData) {
             return this.$uibModal.open({
                 controllerAs: 'ctrl',
                 controller: 'BraintreeModalController',
                 templateUrl: 'app/movies/braintree_modal/braintree_modal.html',
                 resolve: {
-                    productId: () => productId,
-                    token: () => this.libertas.getPurchaseClientToken(),
-                    offer: () => this.libertas.getOffer(offerId)
+                    payload: () => payload,
+                    token: () => this.libertas.getPurchaseClientToken()
                 }
             });
         }
