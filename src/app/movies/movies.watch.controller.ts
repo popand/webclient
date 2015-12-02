@@ -9,6 +9,7 @@ namespace app.movies {
             'video'
         ];
 
+        playerVideo: models.IPlaybackInfo;
         relatedVideos: models.IProduct[];
 
         constructor(
@@ -20,6 +21,15 @@ namespace app.movies {
             $rootScope.title = video.title;
 
             var productId = this.video.productId;
+            var purchaseOption = this.video.purchaseOptionList[0];
+            var media = purchaseOption.mediaList[0];
+            var offerId = purchaseOption.offerId;
+            var targetDevice = media.targetDevice;
+
+            dataService.getPlaybackUrl(productId, offerId, targetDevice)
+                .then(video => {
+                    this.playerVideo = video;
+                });
 
             dataService.getRecommendations(productId)
                 .then(products => {

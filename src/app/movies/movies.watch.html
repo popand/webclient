@@ -1,8 +1,8 @@
 <section id="video-box-block" class="black-section">
     <div class="container">
-        <div class="iframe-box">
+        <div class="iframe-box" ng-if="ctrl.playerVideo">
             <div class="embed-responsive embed-responsive-16by9">
-                <iframe width="100%" class="embed-responsive-item" src="//www.youtube.com/embed/RnZvH6WaeXg" frameborder="0" allowfullscreen></iframe>
+                <bitdash id="bitdash-player" video="::ctrl.playerVideo"></bitdash>
             </div><!-- embed-responsive -->
         </div><!-- iframe-box -->
 

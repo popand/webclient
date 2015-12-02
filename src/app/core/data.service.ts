@@ -383,6 +383,16 @@ namespace app.core {
 
             return request.then(getResponseObject);
         }
+
+        getPlaybackUrl(productId: string, offerId: string, deviceSpec: string, deviceId = 'web') {
+            var request = this.request({
+                method: 'GET',
+                url: this.api('/playbackservice/v1/playback/url'),
+                params: {productId, offerId, deviceSpec, deviceId}
+            });
+
+            return request.then(getResponseObject);
+        }
     }
 
     angular

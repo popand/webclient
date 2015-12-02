@@ -181,4 +181,15 @@ namespace models {
         price: string;
         paymentNonce: string;
     }
+
+    export interface IPlaybackInfo {
+        componentId: string;
+        offerId: string;
+        entitlementId: string;
+        aspectRatio: string;
+        targetDevice: string;
+        url: string;
+        screenFormat: string;
+        location: number;
+    }
 }

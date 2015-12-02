@@ -6,7 +6,7 @@ namespace app.movies {
     class BitdashController {
         static $inject = ['CONFIG'];
 
-        video: models.IMedia;
+        video: (models.IMedia | models.IPlaybackInfo);
         player: any;
         config: any;
         url: string;
