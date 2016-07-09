@@ -137,7 +137,7 @@ namespace app.core {
                 method: 'POST',
                 url: this.api('/securityservice/oauth/token'),
                 params: { 'grant_type': 'client_credentials' },
-                headers: { 'Authorization': 'Basic dmlwYWFzLXVzZXI6c2VjcmV0' }
+                headers: { 'Authorization': 'Basic cGhpLXVzZXI6c2VjcmV0' }
             };
 
             return this.$http(config)
