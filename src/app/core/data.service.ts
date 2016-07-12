@@ -47,8 +47,12 @@ namespace app.core {
         return _.map(products, models.Product.fromJson);
     }
 
+
+
     export class DataService {
         static $inject = ['$http', '$q', 'url', 'localStorageService', 'logger'];
+        private accessToken: ng.IPromise<string> = null;
+        private lastAccessTokenFetch = 0;
 
         constructor(
             protected $http: ng.IHttpService,
@@ -79,60 +83,57 @@ namespace app.core {
                 .catch(invalidAccessToken);
 
             function doRequest(token: string) {
-                if (!token) {
+                if (!token || !_.isString(token)) {
                     return $q.reject('no token');
                 }
 
-                return $http(withAuthHeaders(config));
+                return $http(withAuthHeaders(config, token));
             }
 
             function invalidAccessToken(response: any) {
-                var error = response.data.error;
+                var error = _.get(response, 'data.error', response);
                 var skip = error && error !== 'invalid_token';
 
                 if (!skip && response.status === 401) {
+                    // Invalid access token, probably just expired, do request again,
+                    // but don't catch the error again, don't need the infinite loop.
                     return self.ensureAccessToken(true).then(doRequest);
                 }
 
                 return $q.reject(response);
             }
 
-            function withAuthHeaders(config: any) {
+            function withAuthHeaders(config: any, accessToken: string) {
+                var userToken = storage.get('libertas.user_token') || undefined;
                 var headers = config.headers || {};
 
-                var accessToken = storage.get('libertas.access_token');
-                if (accessToken) {
-                    headers.Authorization = 'Bearer ' + accessToken;
-                } else {
-                    headers.Authorization = undefined;
-                }
-
-                var userToken = storage.get('libertas.user_token');
-                if (userToken) {
-                    headers.UserAuthorization = userToken;
-                } else {
-                    headers.UserAuthorization = undefined;
-                }
+                headers.Authorization = 'Bearer ' + accessToken;
+                headers.UserAuthorization = userToken;
 
                 config.headers = headers;
                 return config;
             }
         }
 
-        ensureAccessToken(force = false) {
-            var token = this.storage.get('libertas.access_token');
-
-            if (force || !token) {
-                token = this.fetchAccessToken();
-                this.storage.set('libertas.access_token', token);
-            } else {
-                token = this.$q.when(token);
+        ensureAccessToken(force=false) {
+            if (force || !this.accessToken) {
+                this.accessToken = this.fetchAccessToken();
             }
-
-            return <ng.IPromise<string>>token;
+            return this.accessToken;
         }
 
         fetchAccessToken() {
+            // If multiple errors happened, we only want to fetch the access token once.
+            // Wait 5 seconds, if you want to make another request, otherwise return existing token.
+            const now = moment.utc().unix();
+            const wait = 5;  // TODO: move to the config or use token.expire_in?
+
+            if (this.lastAccessTokenFetch && now < this.lastAccessTokenFetch + wait) {
+                return this.accessToken;
+            }
+
+            this.lastAccessTokenFetch = now;
+
             var config: any = {
                 method: 'POST',
                 url: this.api('/securityservice/oauth/token'),
@@ -142,9 +143,7 @@ namespace app.core {
 
             return this.$http(config)
                 .then((response: any) => {
-                    var token = response.data['access_token'];
-                    this.storage.set('libertas.access_token', token);
-                    return token;
+                    return response.data['access_token'];
                 });
         }
 
